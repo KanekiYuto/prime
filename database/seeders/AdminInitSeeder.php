@@ -9,11 +9,11 @@ use App\Cascade\Models\Admin\AbilityModel;
 use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
 
 /**
- * 管理员能力填充
+ * 管理员信息初始化
  *
  * @author KanekiYuto
  */
-class AdminAbilitySeeder extends Seeder
+class AdminInitSeeder extends Seeder
 {
 
     /**
@@ -23,10 +23,9 @@ class AdminAbilitySeeder extends Seeder
      */
     public array $params = [];
 
+
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
@@ -112,10 +111,6 @@ class AdminAbilitySeeder extends Seeder
         collect($this->params)->map(function (array $item) {
             AbilityModel::query()->create($item);
         });
-
-        $this->callOnce([
-            AdminRoleSeeder::class,
-        ]);
     }
 
     /**
