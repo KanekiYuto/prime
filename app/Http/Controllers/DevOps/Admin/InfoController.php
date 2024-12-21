@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\DevOps\Admin;
 
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace as TheTrace;
+use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
 use App\Http\Service\DevOps\Admin\InfoService;
 use Handyfit\Framework\Preacher\PreacherResponse;
 use Handyfit\Framework\Support\Facades\Preacher;
@@ -32,7 +32,7 @@ class InfoController
      */
     public function __construct()
     {
-
+        $this->service = new InfoService;
     }
 
     /**
@@ -58,11 +58,11 @@ class InfoController
             request: $request,
             class: InfoService::class,
             orderBy: [
-                TheTrace::ID,
-                TheTrace::ACCOUNT,
-                TheTrace::EMAIL,
-                TheTrace::UPDATED_AT,
-                TheTrace::CREATED_AT,
+                TheSummary::ID,
+                TheSummary::ACCOUNT,
+                TheSummary::EMAIL,
+                TheSummary::UPDATED_AT,
+                TheSummary::CREATED_AT,
             ],
             queryRule: [
                 'id' => ['nullable', 'string'],

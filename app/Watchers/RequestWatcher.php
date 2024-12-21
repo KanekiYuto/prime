@@ -4,8 +4,8 @@ namespace App\Watchers;
 
 use App\Cascade\Models\Admin\InfoModel;
 use App\Cascade\Models\Admin\LogModel as AdminLog;
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace;
-use App\Cascade\Trace\Eloquent\Admin\LogTrace as TheTrace;
+use App\Cascade\Summaries\Admin\InfoSummary;
+use App\Cascade\Summaries\Admin\LogSummary as TheSummary;
 use App\Constants\DevOpsConstant;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Http\Events\RequestHandled;
@@ -68,12 +68,12 @@ class RequestWatcher extends Watcher
         }
 
         AdminLog::query()->create([
-            TheTrace::ADMIN_ID => $userArray[InfoTrace::ID],
-            TheTrace::API => $routeName,
-            TheTrace::IPADDRESS => $request->ip(),
-            TheTrace::PAYLOAD => $request->input(),
-            TheTrace::HEADERS => $request->headers->all(),
-            TheTrace::RESPONSE => $event->response,
+            TheSummary::ADMIN_ID => $userArray[InfoSummary::ID],
+            TheSummary::API => $routeName,
+            TheSummary::IPADDRESS => $request->ip(),
+            TheSummary::PAYLOAD => $request->input(),
+            TheSummary::HEADERS => $request->headers->all(),
+            TheSummary::RESPONSE => $event->response,
         ])->save();
     }
 

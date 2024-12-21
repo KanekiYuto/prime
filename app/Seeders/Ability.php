@@ -2,7 +2,7 @@
 
 namespace App\Seeders;
 
-use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
+use App\Cascade\Summaries\Admin\AbilitySummary;
 use Closure;
 use Handyfit\Framework\Support\Timestamp;
 use Illuminate\Support\Collection;
@@ -178,13 +178,13 @@ class Ability
     public function toArray(): array
     {
         $stack = collect()->push([
-            AbilityTrace::ID => $this->getId(),
-            AbilityTrace::NAME => $this->getName(),
-            AbilityTrace::PARENT_ID => $this->getParentId(),
-            AbilityTrace::CLIENT_ROUTING => $this->getClientRouting(),
-            AbilityTrace::SERVER_ROUTING => $this->getServerRouting(),
-            AbilityTrace::OPERATION => $this->getOperation(),
-            AbilityTrace::TYPE => $this->getType(),
+            AbilitySummary::ID => $this->getId(),
+            AbilitySummary::NAME => $this->getName(),
+            AbilitySummary::PARENT_ID => $this->getParentId(),
+            AbilitySummary::CLIENT_ROUTING => $this->getClientRouting(),
+            AbilitySummary::SERVER_ROUTING => $this->getServerRouting(),
+            AbilitySummary::OPERATION => $this->getOperation(),
+            AbilitySummary::TYPE => $this->getType(),
         ]);
 
         return $this->recursion($stack, $this->children)->toArray();
@@ -294,13 +294,13 @@ class Ability
     {
         foreach ($children as $child) {
             $stack->push([
-                AbilityTrace::ID => $child->getId(),
-                AbilityTrace::NAME => $child->getName(),
-                AbilityTrace::PARENT_ID => $child->getParentId(),
-                AbilityTrace::CLIENT_ROUTING => $child->getClientRouting(),
-                AbilityTrace::SERVER_ROUTING => $child->getServerRouting(),
-                AbilityTrace::OPERATION => $child->getOperation(),
-                AbilityTrace::TYPE => $child->getType(),
+                AbilitySummary::ID => $child->getId(),
+                AbilitySummary::NAME => $child->getName(),
+                AbilitySummary::PARENT_ID => $child->getParentId(),
+                AbilitySummary::CLIENT_ROUTING => $child->getClientRouting(),
+                AbilitySummary::SERVER_ROUTING => $child->getServerRouting(),
+                AbilitySummary::OPERATION => $child->getOperation(),
+                AbilitySummary::TYPE => $child->getType(),
             ]);
 
             if (!empty($child->getChildren())) {

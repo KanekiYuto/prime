@@ -1,26 +1,26 @@
 <?php
 
-use App\Cascade\Trace\Eloquent\Admin\LogTrace as TheEloquentTrace;
+use App\Cascade\Summaries\Admin\LogSummary as TheSummary;
 use Handyfit\Framework\Foundation\Hook\Migration as TheHook;
+use Handyfit\Framework\Summary\Summary;
 use Handyfit\Framework\Hook\Migration as Hook;
-use Handyfit\Framework\Trace\EloquentTrace;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/*
+/**
  * Database Migration []
  *
  * @author KanekiYuto
  */
-return new class() extends Migration {
+return new class extends Migration {
 
     /**
-     * Eloquent model tracing class
+     * Summary class
      *
-     * @var EloquentTrace
+     * @var Summary
      */
-    protected EloquentTrace $eloquentTrace;
+    protected Summary $summary;
 
     /**
      * Hook class
@@ -36,7 +36,7 @@ return new class() extends Migration {
      */
     public function __construct()
     {
-        $this->eloquentTrace = new TheEloquentTrace();
+        $this->summary = new TheSummary();
         $this->hook = new TheHook();
     }
 
@@ -58,22 +58,22 @@ return new class() extends Migration {
     public function up(): void
     {
         // Perform the operations before the migration
-        $this->hook->upBefore($this->eloquentTrace);
+        $this->hook->upBefore($this->summary);
 
-        Schema::create(TheEloquentTrace::TABLE, function (Blueprint $table) {
-            $table->bigInteger(column: TheEloquentTrace::ID)->primary()->unique()->comment(comment: '管理员日志ID');
-            $table->bigInteger(column: TheEloquentTrace::ADMIN_ID)->comment(comment: '管理员ID');
-            $table->string(column: TheEloquentTrace::API, length: 128)->comment(comment: 'API名称');
-            $table->ipAddress(column: TheEloquentTrace::IPADDRESS)->comment(comment: '请求IP');
-            $table->json(column: TheEloquentTrace::PAYLOAD)->comment(comment: '请求荷载');
-            $table->json(column: TheEloquentTrace::HEADERS)->comment(comment: '请求头');
-            $table->json(column: TheEloquentTrace::RESPONSE)->comment(comment: '响应参数');
-            $table->bigInteger(column: TheEloquentTrace::CREATED_AT)->comment(comment: '创建时间');
-            $table->bigInteger(column: TheEloquentTrace::UPDATED_AT)->comment(comment: '修改时间');
-        });
+        Schema::create(TheSummary::TABLE, function (Blueprint $table) {
+			$table->bigInteger(column: TheSummary::ID)->primary()->unique()->comment(comment: '管理员日志ID');
+			$table->bigInteger(column: TheSummary::ADMIN_ID)->comment(comment: '管理员ID');
+			$table->string(column: TheSummary::API, length: 128)->comment(comment: 'API名称');
+			$table->ipAddress(column: TheSummary::IPADDRESS)->comment(comment: '请求IP');
+			$table->json(column: TheSummary::PAYLOAD)->comment(comment: '请求荷载');
+			$table->json(column: TheSummary::HEADERS)->comment(comment: '请求头');
+			$table->json(column: TheSummary::RESPONSE)->comment(comment: '响应参数');
+			$table->bigInteger(column: TheSummary::CREATED_AT)->comment(comment: '创建时间');
+			$table->bigInteger(column: TheSummary::UPDATED_AT)->comment(comment: '修改时间');
+		});
 
         // Perform operations after the migration
-        $this->hook->upAfter($this->eloquentTrace);
+        $this->hook->upAfter($this->summary);
     }
 
     /**
@@ -84,12 +84,12 @@ return new class() extends Migration {
     public function down(): void
     {
         // Perform the operations before the migration rollback
-        $this->hook->downBefore($this->eloquentTrace);
+        $this->hook->downBefore($this->summary);
 
-        Schema::dropIfExists(TheEloquentTrace::TABLE);
+        Schema::dropIfExists(TheSummary::TABLE);
 
         // Perform operations after the migration rollback
-        $this->hook->downAfter($this->eloquentTrace);
+        $this->hook->downAfter($this->summary);
     }
 
 };

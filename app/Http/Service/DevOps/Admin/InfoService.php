@@ -3,7 +3,7 @@
 namespace App\Http\Service\DevOps\Admin;
 
 use App\Cascade\Models\Admin\InfoModel as AdminInfo;
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace as TheTrace;
+use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
 use Handyfit\Framework\Preacher\PreacherResponse;
 use Handyfit\Framework\Support\Facades\Preacher;
 use Illuminate\Support\Facades\Hash;
@@ -68,8 +68,8 @@ class InfoService
 
         $model = Equation::build(
             model: $model,
-            columns: [TheTrace::ID, TheTrace::ACCOUNT],
-            aliases: [TheTrace::ID => 'value', TheTrace::ACCOUNT => 'label']
+            columns: [TheSummary::ID, TheSummary::ACCOUNT],
+            aliases: [TheSummary::ID => 'value', TheSummary::ACCOUNT => 'label']
         );
 
         $model = $model->export()->get($model->getColumns());
@@ -101,10 +101,10 @@ class InfoService
         $model = AdminInfo::query();
 
         $model = $model->create([
-            TheTrace::ACCOUNT => $account,
-            TheTrace::EMAIL => $email,
-            TheTrace::PASS => Hash::make($pass),
-            TheTrace::ADMIN_ROLE_ID => $role_id,
+            TheSummary::ACCOUNT => $account,
+            TheSummary::EMAIL => $email,
+            TheSummary::PASS => Hash::make($pass),
+            TheSummary::ADMIN_ROLE_ID => $role_id,
         ]);
 
         return Preacher::allow(
@@ -132,10 +132,10 @@ class InfoService
         int|null $id = null
     ): PreacherResponse {
         $model = AdminInfo::query();
-        $model = $model->where(TheTrace::ACCOUNT, $account);
+        $model = $model->where(TheSummary::ACCOUNT, $account);
 
         if (!empty($id)) {
-            $model = $model->where(TheTrace::ID, '<>', $id);
+            $model = $model->where(TheSummary::ID, '<>', $id);
         }
 
         if ($model->exists()) {
@@ -146,10 +146,10 @@ class InfoService
         }
 
         $model = AdminInfo::query();
-        $model = $model->where(TheTrace::EMAIL, $email);
+        $model = $model->where(TheSummary::EMAIL, $email);
 
         if (!empty($id)) {
-            $model = $model->where(TheTrace::ID, '<>', $id);
+            $model = $model->where(TheSummary::ID, '<>', $id);
         }
 
         if ($model->exists()) {
@@ -185,11 +185,11 @@ class InfoService
 
         $model = AdminInfo::query()->find($id);
 
-        $column = TheTrace::ACCOUNT;
+        $column = TheSummary::ACCOUNT;
         $model->$column = $account;
-        $column = TheTrace::EMAIL;
+        $column = TheSummary::EMAIL;
         $model->$column = $email;
-        $column = TheTrace::ADMIN_ROLE_ID;
+        $column = TheSummary::ADMIN_ROLE_ID;
         $model->$column = $role_id;
 
         return Preacher::allow(

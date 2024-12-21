@@ -6,9 +6,9 @@ use App\Cascade\Models\Admin\AbilityModel;
 use App\Cascade\Models\Admin\InfoModel as AdminInfo;
 use App\Cascade\Models\Admin\RoleModel;
 use App\Cascade\Models\AdminRole\AbilityModel as AdminRoleAbilityModel;
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace as TheTrace;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
-use App\Cascade\Trace\Eloquent\AdminRole\AbilityTrace as AdminRoleAbilityTrace;
+use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
+use App\Cascade\Summaries\Admin\RoleSummary;
+use App\Cascade\Summaries\AdminRole\AbilitySummary as AdminRoleAbilityTrace;
 use App\Seeders\Ability;
 use Handyfit\Framework\Preacher\PreacherResponse;
 use Handyfit\Framework\Support\Facades\Preacher;
@@ -78,9 +78,9 @@ class AdminInitSeeder extends Seeder
         $id = Timestamp::millisecond();
 
         $result = RoleModel::query()->create([
-            RoleTrace::ID => $id,
-            RoleTrace::NAME => '超级管理员',
-            RoleTrace::EXPLAIN => '拥有平台所有权限',
+            RoleSummary::ID => $id,
+            RoleSummary::NAME => '超级管理员',
+            RoleSummary::EXPLAIN => '拥有平台所有权限',
         ]);
 
         return Preacher::allow(
@@ -138,15 +138,15 @@ class AdminInitSeeder extends Seeder
     public function runInfo(int $roleId): PreacherResponse
     {
         $stack = collect()->push([
-            TheTrace::ACCOUNT => 'phpunit@master',
-            TheTrace::PASS => Hash::make('phpunit@pass'),
-            TheTrace::EMAIL => 'phpunit-master@rubust.com',
-            TheTrace::ADMIN_ROLE_ID => $roleId,
+            TheSummary::ACCOUNT => 'phpunit@master',
+            TheSummary::PASS => Hash::make('phpunit@pass'),
+            TheSummary::EMAIL => 'phpunit-master@rubust.com',
+            TheSummary::ADMIN_ROLE_ID => $roleId,
         ])->push([
-            TheTrace::ACCOUNT => 'KanekiYuto',
-            TheTrace::PASS => Hash::make('KanekiYuto@pass'),
-            TheTrace::EMAIL => 'kaneki.yuto.404@gmail.com',
-            TheTrace::ADMIN_ROLE_ID => $roleId,
+            TheSummary::ACCOUNT => 'KanekiYuto',
+            TheSummary::PASS => Hash::make('KanekiYuto@pass'),
+            TheSummary::EMAIL => 'kaneki.yuto.404@gmail.com',
+            TheSummary::ADMIN_ROLE_ID => $roleId,
         ]);
 
         foreach ($stack as $item) {

@@ -3,9 +3,9 @@
 namespace App\Models\Admin;
 
 use App\Cascade\Models\Admin\InfoModel;
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace;
-use App\Cascade\Trace\Eloquent\Admin\LogTrace;
 use Illuminate\Database\Eloquent\Model;
+use App\Cascade\Summaries\Admin\LogSummary;
+use App\Cascade\Summaries\Admin\InfoSummary;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Log extends Model
@@ -20,8 +20,8 @@ class Log extends Model
     {
         return $this->hasOne(
             InfoModel::class,
-            InfoTrace::ID,
-            LogTrace::ADMIN_ID
+            InfoSummary::ID,
+            LogSummary::ADMIN_ID
         );
     }
 

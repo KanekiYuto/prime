@@ -4,10 +4,10 @@ namespace App\Http\Service\DevOps;
 
 use App\Cascade\Models\Admin\InfoModel as AdminInfoModel;
 use App\Cascade\Models\Admin\RoleModel;
-use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace as AdminInfoTrace;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace as AdminRoleTrace;
+use App\Cascade\Summaries\Admin\AbilitySummary;
+use App\Cascade\Summaries\Admin\InfoSummary as AdminInfoTrace;
+use App\Cascade\Summaries\Admin\RoleSummary;
+use App\Cascade\Summaries\Admin\RoleSummary as AdminRoleSummary;
 use App\Constants\DevOpsConstant;
 use Handyfit\Framework\Preacher\PreacherResponse;
 use Handyfit\Framework\Support\Facades\Preacher;
@@ -79,23 +79,23 @@ class AdminService
     {
         $roleData = $model->role();
 
-        $roleModel = RoleModel::query()->find($roleData->value(RoleTrace::ID));
+        $roleModel = RoleModel::query()->find($roleData->value(RoleSummary::ID));
 
         $abilities = $roleModel->abilities()->get([
-            AbilityTrace::CLIENT_ROUTING,
-            AbilityTrace::OPERATION,
-            AbilityTrace::TYPE,
+            AbilitySummary::CLIENT_ROUTING,
+            AbilitySummary::OPERATION,
+            AbilitySummary::TYPE,
         ]);
 
         $permissions = [];
 
         foreach ($abilities as $ability) {
-            if (!empty($ability[AbilityTrace::CLIENT_ROUTING])) {
-                $permissions[] = "@route:{$ability[AbilityTrace::CLIENT_ROUTING]}";
+            if (!empty($ability[AbilitySummary::CLIENT_ROUTING])) {
+                $permissions[] = "@route:{$ability[AbilitySummary::CLIENT_ROUTING]}";
             }
 
-            if (!empty($ability[AbilityTrace::OPERATION])) {
-                foreach ($ability[AbilityTrace::OPERATION] as $key => $val) {
+            if (!empty($ability[AbilitySummary::OPERATION])) {
+                foreach ($ability[AbilitySummary::OPERATION] as $key => $val) {
                     $permissions[] = "@$val:$key";
                 }
             }
@@ -105,7 +105,7 @@ class AdminService
             'id' => $model[AdminInfoTrace::ID],
             'account' => $model[AdminInfoTrace::ACCOUNT],
             'email' => $model[AdminInfoTrace::EMAIL],
-            'role' => $roleData->value(AdminRoleTrace::NAME),
+            'role' => $roleData->value(AdminRoleSummary::NAME),
             'permissions' => $permissions,
         ]);
     }

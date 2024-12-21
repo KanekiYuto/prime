@@ -2,11 +2,11 @@
 
 namespace App\Hook\Eloquent\Admin;
 
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace;
-use Handyfit\Framework\Foundation\Hook\Eloquent as EloquentHook;
-use Handyfit\Framework\Trace\EloquentTrace;
-use Illuminate\Database\Eloquent\Builder;
+use Handyfit\Framework\Summary\Summary;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
+use Handyfit\Framework\Foundation\Hook\Eloquent as EloquentHook;
 
 /**
  * 管理员信息
@@ -19,21 +19,21 @@ class Info extends EloquentHook
     /**
      * 模型插入前的操作
      *
-     * @param Model                   $model
-     * @param Builder                 $query
-     * @param InfoTrace|EloquentTrace $eloquentTrace
+     * @param  Model               $model
+     * @param  Builder             $query
+     * @param  TheSummary|Summary  $summary
      *
      * @return bool
      */
-    public function performInsert(Model $model, Builder $query, InfoTrace|EloquentTrace $eloquentTrace): bool
+    public function performInsert(Model $model, Builder $query, TheSummary|Summary $summary): bool
     {
-        if (!parent::performInsert($model, $query, $eloquentTrace)) {
+        if (!parent::performInsert($model, $query, $summary)) {
             return false;
         }
 
         $isExist = $model->newQuery()
-            ->where($eloquentTrace::ACCOUNT, $model->getAttribute($eloquentTrace::ACCOUNT))
-            ->orWhere($eloquentTrace::EMAIL, $model->getAttribute($eloquentTrace::EMAIL))
+            ->where($summary::ACCOUNT, $model->getAttribute($summary::ACCOUNT))
+            ->orWhere($summary::EMAIL, $model->getAttribute($summary::EMAIL))
             ->exists();
 
         if ($isExist) {
@@ -46,15 +46,15 @@ class Info extends EloquentHook
     /**
      * 模型更新前的操作
      *
-     * @param Model         $model
-     * @param Builder       $query
-     * @param EloquentTrace $eloquentTrace
+     * @param  Model    $model
+     * @param  Builder  $query
+     * @param  Summary  $summary
      *
      * @return bool
      */
-    public function performUpdate(Model $model, Builder $query, EloquentTrace $eloquentTrace): bool
+    public function performUpdate(Model $model, Builder $query, Summary $summary): bool
     {
-        if (!parent::performUpdate($model, $query, $eloquentTrace)) {
+        if (!parent::performUpdate($model, $query, $summary)) {
             return false;
         }
 

@@ -1,26 +1,26 @@
 <?php
 
-use App\Cascade\Trace\Eloquent\AdminRole\AbilityTrace as TheEloquentTrace;
+use App\Cascade\Summaries\AdminRole\AbilitySummary as TheSummary;
 use Handyfit\Framework\Foundation\Hook\Migration as TheHook;
+use Handyfit\Framework\Summary\Summary;
 use Handyfit\Framework\Hook\Migration as Hook;
-use Handyfit\Framework\Trace\EloquentTrace;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/*
+/**
  * Database Migration []
  *
  * @author KanekiYuto
  */
-return new class() extends Migration {
+return new class extends Migration {
 
     /**
-     * Eloquent model tracing class
+     * Summary class
      *
-     * @var EloquentTrace
+     * @var Summary
      */
-    protected EloquentTrace $eloquentTrace;
+    protected Summary $summary;
 
     /**
      * Hook class
@@ -36,7 +36,7 @@ return new class() extends Migration {
      */
     public function __construct()
     {
-        $this->eloquentTrace = new TheEloquentTrace();
+        $this->summary = new TheSummary();
         $this->hook = new TheHook();
     }
 
@@ -58,18 +58,18 @@ return new class() extends Migration {
     public function up(): void
     {
         // Perform the operations before the migration
-        $this->hook->upBefore($this->eloquentTrace);
+        $this->hook->upBefore($this->summary);
 
-        Schema::create(TheEloquentTrace::TABLE, function (Blueprint $table) {
-            $table->bigInteger(column: TheEloquentTrace::ID)->primary()->unique()->comment(comment: '角色能力 - [ID]');
-            $table->bigInteger(column: TheEloquentTrace::ROLE_ID)->comment(comment: '角色 - [ID]');
-            $table->bigInteger(column: TheEloquentTrace::ABILITY_ID)->comment(comment: '能力 - [ID]');
-            $table->bigInteger(column: TheEloquentTrace::CREATED_AT)->comment(comment: '创建时间');
-            $table->bigInteger(column: TheEloquentTrace::UPDATED_AT)->comment(comment: '修改时间');
-        });
+        Schema::create(TheSummary::TABLE, function (Blueprint $table) {
+			$table->bigInteger(column: TheSummary::ID)->primary()->unique()->comment(comment: '角色能力 - [ID]');
+			$table->bigInteger(column: TheSummary::ROLE_ID)->comment(comment: '角色 - [ID]');
+			$table->bigInteger(column: TheSummary::ABILITY_ID)->comment(comment: '能力 - [ID]');
+			$table->bigInteger(column: TheSummary::CREATED_AT)->comment(comment: '创建时间');
+			$table->bigInteger(column: TheSummary::UPDATED_AT)->comment(comment: '修改时间');
+		});
 
         // Perform operations after the migration
-        $this->hook->upAfter($this->eloquentTrace);
+        $this->hook->upAfter($this->summary);
     }
 
     /**
@@ -80,12 +80,12 @@ return new class() extends Migration {
     public function down(): void
     {
         // Perform the operations before the migration rollback
-        $this->hook->downBefore($this->eloquentTrace);
+        $this->hook->downBefore($this->summary);
 
-        Schema::dropIfExists(TheEloquentTrace::TABLE);
+        Schema::dropIfExists(TheSummary::TABLE);
 
         // Perform operations after the migration rollback
-        $this->hook->downAfter($this->eloquentTrace);
+        $this->hook->downAfter($this->summary);
     }
 
 };

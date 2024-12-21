@@ -3,7 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Cascade\Models\Admin\AbilityModel;
-use App\Cascade\Trace\Eloquent\AdminRole\AbilityTrace as AdminRoleAbilityTrace;
+use App\Cascade\Summaries\AdminRole\AbilitySummary as AdminRoleAbilityTrace;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 

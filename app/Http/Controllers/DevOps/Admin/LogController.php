@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\DevOps\Admin;
 
-use App\Cascade\Trace\Eloquent\Admin\LogTrace as TheTrace;
+use App\Cascade\Summaries\Admin\LogSummary as TheSummary;
 use App\Http\Service\DevOps\Admin\LogService;
 use Handyfit\Framework\Preacher\PreacherResponse;
 use Illuminate\Support\Facades\Request;
@@ -29,9 +29,9 @@ class LogController
             request: $request,
             class: LogService::class,
             orderBy: [
-                TheTrace::ID,
-                TheTrace::UPDATED_AT,
-                TheTrace::CREATED_AT,
+                TheSummary::ID,
+                TheSummary::UPDATED_AT,
+                TheSummary::CREATED_AT,
             ],
             queryRule: [
                 'id' => ['nullable', 'integer'],

@@ -1,26 +1,26 @@
 <?php
 
-use App\Cascade\Trace\Eloquent\PersonalAccess\TokensTrace as TheEloquentTrace;
+use App\Cascade\Summaries\PersonalAccess\TokensSummary as TheSummary;
 use Handyfit\Framework\Foundation\Hook\Migration as TheHook;
+use Handyfit\Framework\Summary\Summary;
 use Handyfit\Framework\Hook\Migration as Hook;
-use Handyfit\Framework\Trace\EloquentTrace;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/*
+/**
  * Database Migration []
  *
  * @author KanekiYuto
  */
-return new class() extends Migration {
+return new class extends Migration {
 
     /**
-     * Eloquent model tracing class
+     * Summary class
      *
-     * @var EloquentTrace
+     * @var Summary
      */
-    protected EloquentTrace $eloquentTrace;
+    protected Summary $summary;
 
     /**
      * Hook class
@@ -36,7 +36,7 @@ return new class() extends Migration {
      */
     public function __construct()
     {
-        $this->eloquentTrace = new TheEloquentTrace();
+        $this->summary = new TheSummary();
         $this->hook = new TheHook();
     }
 
@@ -58,22 +58,22 @@ return new class() extends Migration {
     public function up(): void
     {
         // Perform the operations before the migration
-        $this->hook->upBefore($this->eloquentTrace);
+        $this->hook->upBefore($this->summary);
 
-        Schema::create(TheEloquentTrace::TABLE, function (Blueprint $table) {
-            $table->bigInteger(column: TheEloquentTrace::ID)->comment(comment: '私人访问令牌ID');
-            $table->morphs(name: TheEloquentTrace::TOKENABLE);
-            $table->string(column: TheEloquentTrace::NAME)->comment(comment: '令牌名称');
-            $table->string(column: TheEloquentTrace::TOKEN, length: 64)->unique()->comment(comment: '令牌内容');
-            $table->text(column: TheEloquentTrace::ABILITIES)->nullable()->comment(comment: '令牌能力');
-            $table->timestamp(column: TheEloquentTrace::LAST_USED_AT)->nullable()->comment(comment: '令牌最终使用时间');
-            $table->timestamp(column: TheEloquentTrace::EXPIRES_AT)->nullable()->comment(comment: '令牌过期时间');
-            $table->bigInteger(column: TheEloquentTrace::CREATED_AT)->comment(comment: '创建时间');
-            $table->bigInteger(column: TheEloquentTrace::UPDATED_AT)->comment(comment: '修改时间');
-        });
+        Schema::create(TheSummary::TABLE, function (Blueprint $table) {
+			$table->bigInteger(column: TheSummary::ID)->comment(comment: '私人访问令牌ID');
+			$table->morphs(name: TheSummary::TOKENABLE);
+			$table->string(column: TheSummary::NAME)->comment(comment: '令牌名称');
+			$table->string(column: TheSummary::TOKEN, length: 64)->unique()->comment(comment: '令牌内容');
+			$table->text(column: TheSummary::ABILITIES)->nullable()->comment(comment: '令牌能力');
+			$table->timestamp(column: TheSummary::LAST_USED_AT)->nullable()->comment(comment: '令牌最终使用时间');
+			$table->timestamp(column: TheSummary::EXPIRES_AT)->nullable()->comment(comment: '令牌过期时间');
+			$table->bigInteger(column: TheSummary::CREATED_AT)->comment(comment: '创建时间');
+			$table->bigInteger(column: TheSummary::UPDATED_AT)->comment(comment: '修改时间');
+		});
 
         // Perform operations after the migration
-        $this->hook->upAfter($this->eloquentTrace);
+        $this->hook->upAfter($this->summary);
     }
 
     /**
@@ -84,12 +84,12 @@ return new class() extends Migration {
     public function down(): void
     {
         // Perform the operations before the migration rollback
-        $this->hook->downBefore($this->eloquentTrace);
+        $this->hook->downBefore($this->summary);
 
-        Schema::dropIfExists(TheEloquentTrace::TABLE);
+        Schema::dropIfExists(TheSummary::TABLE);
 
         // Perform operations after the migration rollback
-        $this->hook->downAfter($this->eloquentTrace);
+        $this->hook->downAfter($this->summary);
     }
 
 };

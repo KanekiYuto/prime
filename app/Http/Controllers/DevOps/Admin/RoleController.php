@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\DevOps\Admin;
 
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace as TheTrace;
+use App\Cascade\Summaries\Admin\RoleSummary as TheSummary;
 use App\Experimental\Crush\Crush;
 use App\Http\Service\DevOps\Admin\RoleService;
 use Handyfit\Framework\Preacher\PreacherResponse;
@@ -29,9 +29,9 @@ class RoleController
             request: $request,
             class: RoleService::class,
             orderBy: [
-                TheTrace::ID,
-                TheTrace::UPDATED_AT,
-                TheTrace::CREATED_AT,
+                TheSummary::ID,
+                TheSummary::UPDATED_AT,
+                TheSummary::CREATED_AT,
             ],
             queryRule: [
                 'id' => ['nullable', 'string'],
@@ -88,30 +88,6 @@ class RoleController
             $requestParams['id'],
             $requestParams['name'],
             $requestParams['explain'] ?? ''
-        );
-    }
-
-    public function delete(Request $request): void
-    {
-    }
-
-    /**
-     * 设置角色能力
-     *
-     * @param Request $request
-     *
-     * @return PreacherResponse
-     */
-    public function ability_old(Request $request): PreacherResponse
-    {
-        $requestParams = $request::validate([
-            'id' => ['required', 'integer'],
-            'abilities' => ['array'],
-        ]);
-
-        return RoleService::ability(
-            $requestParams['id'],
-            $requestParams['abilities'],
         );
     }
 

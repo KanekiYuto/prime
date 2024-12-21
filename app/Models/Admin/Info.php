@@ -3,8 +3,8 @@
 namespace App\Models\Admin;
 
 use App\Cascade\Models\Admin\RoleModel;
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
+use App\Cascade\Summaries\Admin\InfoSummary;
+use App\Cascade\Summaries\Admin\RoleSummary;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Model;
@@ -25,8 +25,8 @@ class Info extends Model
     {
         return $this->hasOne(
             RoleModel::class,
-            RoleTrace::ID,
-            InfoTrace::ADMIN_ROLE_ID
+            RoleSummary::ID,
+            InfoSummary::ADMIN_ROLE_ID
         );
     }
 

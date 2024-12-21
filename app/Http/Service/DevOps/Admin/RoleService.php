@@ -3,8 +3,8 @@
 namespace App\Http\Service\DevOps\Admin;
 
 use App\Cascade\Models\Admin\RoleModel as AdminRole;
-use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace as TheTrace;
+use App\Cascade\Summaries\Admin\AbilitySummary;
+use App\Cascade\Summaries\Admin\RoleSummary as TheSummary;
 use App\Experimental\Crush\Crush;
 use App\Experimental\Crush\Params\Paging as PagingParams;
 use Handyfit\Framework\Preacher\PreacherResponse;
@@ -47,8 +47,8 @@ class RoleService
 
         $model = Equation::build(
             model: $model,
-            columns: [TheTrace::ID, TheTrace::NAME],
-            aliases: [TheTrace::ID => 'value', TheTrace::NAME => 'label']
+            columns: [TheSummary::ID, TheSummary::NAME],
+            aliases: [TheSummary::ID => 'value', TheSummary::NAME => 'label']
         );
 
         $model = $model->export()->get($model->getColumns());
@@ -71,8 +71,8 @@ class RoleService
         $model = AdminRole::query();
 
         $model = $model->create([
-            TheTrace::NAME => $name,
-            TheTrace::EXPLAIN => $explain,
+            TheSummary::NAME => $name,
+            TheSummary::EXPLAIN => $explain,
         ]);
 
         return Preacher::allow(
@@ -101,9 +101,9 @@ class RoleService
     ): PreacherResponse {
         $model = AdminRole::query()->find($id);
 
-        $column = TheTrace::NAME;
+        $column = TheSummary::NAME;
         $model->$column = $name;
-        $column = TheTrace::EXPLAIN;
+        $column = TheSummary::EXPLAIN;
         $model->$column = $explain;
 
         return Preacher::allow(
@@ -128,14 +128,14 @@ class RoleService
         $model = AdminRole::query()->find($id);
 
         $abilities = $model->abilities()->pluck(
-            AbilityTrace::TABLE . '.' . AbilityTrace::ID
+            AbilitySummary::TABLE . '.' . AbilitySummary::ID
         )->all();
 
         //        $abilities = $model->abilities()->get([
-        //            AbilityTrace::TABLE . '.' . AbilityTrace::ID,
-        //            AbilityTrace::TABLE . '.' . AbilityTrace::PARENT_ID,
-        //            AbilityTrace::TABLE . '.' . AbilityTrace::NAME,
-        //            AbilityTrace::TABLE . '.' . AbilityTrace::EXPLAIN,
+        //            AbilitySummary::TABLE . '.' . AbilitySummary::ID,
+        //            AbilitySummary::TABLE . '.' . AbilitySummary::PARENT_ID,
+        //            AbilitySummary::TABLE . '.' . AbilitySummary::NAME,
+        //            AbilitySummary::TABLE . '.' . AbilitySummary::EXPLAIN,
         //        ])->all();
 
         return Preacher::rows($abilities);

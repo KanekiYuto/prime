@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use App\Cascade\Models\Admin\InfoModel;
 use App\Cascade\Models\Admin\RoleModel;
-use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
+use App\Cascade\Summaries\Admin\AbilitySummary;
+use App\Cascade\Summaries\Admin\RoleSummary;
 use App\Constants\DevOpsConstant;
 use Closure;
 use Handyfit\Framework\Preacher\PreacherResponse;
@@ -40,8 +40,8 @@ class BackstageAbility
         }
 
         $roleInfo = $user->role();
-        $roleModel = RoleModel::query()->find($roleInfo->value(RoleTrace::ID));
-        $abilities = $roleModel->abilities()->pluck(AbilityTrace::SERVER_ROUTING);
+        $roleModel = RoleModel::query()->find($roleInfo->value(RoleSummary::ID));
+        $abilities = $roleModel->abilities()->pluck(AbilitySummary::SERVER_ROUTING);
 
         $abilities = collect($abilities)->reject(function (array $item) {
             return empty($item);
