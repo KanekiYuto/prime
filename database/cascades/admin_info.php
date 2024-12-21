@@ -12,7 +12,7 @@ return Cascade::configure()->withTable(
     '管理员信息表'
 )->withSchema(function (Schema $schema) {
 
-    $schema::create(function (Blueprint $table) {
+    $schema->create(function (Blueprint $table) {
         $table->bigInteger('id')->primary()->unique()->fillable()->comment('管理员ID');
         $table->string('account', 32)->fillable()->comment('账号');
         $table->bigInteger('admin_role_id')->fillable()->index()->comment('角色ID');
@@ -24,7 +24,7 @@ return Cascade::configure()->withTable(
 
 }, function (Schema $schema) {
 
-    $schema::dropIfExists();
+    $schema->dropIfExists();
 
 })->withMigration(comment: '测试')->withModel(
     Model::class,

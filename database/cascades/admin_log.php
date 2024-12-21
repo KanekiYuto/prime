@@ -12,7 +12,7 @@ return Cascade::configure()->withTable(
     '管理员日志表'
 )->withSchema(function (Schema $schema) {
 
-    $schema::create(function (Blueprint $table) {
+    $schema->create(function (Blueprint $table) {
         $table->bigInteger('id')->primary()->unique()->fillable()->comment('管理员日志ID');
         $table->bigInteger('admin_id')->fillable()->comment('管理员ID');
         $table->string('api', 128)->fillable()->comment('API名称');
@@ -26,6 +26,6 @@ return Cascade::configure()->withTable(
 
 }, function (Schema $schema) {
 
-    $schema::dropIfExists();
+    $schema->dropIfExists();
 
-})->withModel(Model::class, Hook::class);
+})->withMigration()->withModel(Model::class);

@@ -4,14 +4,13 @@ use Handyfit\Framework\Cascade\Schema;
 use Handyfit\Framework\Cascade\Cascade;
 use Handyfit\Framework\Cascade\Blueprint;
 use Laravel\Sanctum\PersonalAccessToken as Model;
-use Handyfit\Framework\Foundation\Hook\Eloquent as Hook;
 
 return Cascade::configure()->withTable(
     'personal_access_tokens',
     '私人授权令牌信息表'
 )->withSchema(function (Schema $schema) {
 
-    $schema::create(function (Blueprint $table) {
+    $schema->create(function (Blueprint $table) {
         $table->bigInteger('id')->comment('私人访问令牌ID');
         $table->morphs('tokenable');
         $table->string('name')->fillable()->comment('令牌名称');
@@ -25,6 +24,6 @@ return Cascade::configure()->withTable(
 
 }, function (Schema $schema) {
 
-    $schema::dropIfExists();
+    $schema->dropIfExists();
 
-})->withModel(Model::class, Hook::class);
+})->withMigration()->withModel(Model::class);

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
-use App\Http\Middleware\PreacherMiddleware;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Session\Middleware\StartSession;
 use Handyfit\Framework\Support\Facades\Preacher;
@@ -18,6 +17,7 @@ use App\Http\Middleware\Authenticate as AuthenticateMiddleware;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Http\Middleware\BackstageAbility as BackstageAbilityMiddleware;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Handyfit\Framework\Foundation\Http\Middleware\PreacherResponse as PreacherResponseMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))->withRouting(
     using: function () {
@@ -27,8 +27,8 @@ return Application::configure(basePath: dirname(__DIR__))->withRouting(
 
         Route::prefix('dev-ops')
             ->name('dev-ops.')
-            ->middleware(['web', PreacherMiddleware::class])
-            ->group(base_path('routes/develop.php'));
+            ->middleware(['web', PreacherResponseMiddleware::class])
+            ->group(base_path('routes/dev-ops.php'));
     },
     commands: __DIR__ . '/../routes/console.php',
     health: '/up',

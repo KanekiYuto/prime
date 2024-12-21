@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backstage\System;
+namespace App\Http\Controllers\DevOps\System;
 
 use Handyfit\Framework\Support\Facades\Preacher;
 use Handyfit\Framework\Preacher\PreacherResponse;

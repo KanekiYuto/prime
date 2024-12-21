@@ -1,6 +1,6 @@
 <?php
 
-use App\Constants\BackstageConstant;
+use App\Constants\DevOpsConstant;
 use App\Cascade\Models\Admin\InfoModel as AdminInfoModel;
 
 return [
@@ -17,7 +17,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD',  BackstageConstant::GUARD),
+        'guard' => env('AUTH_GUARD',  DevOpsConstant::GUARD),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 
@@ -39,10 +39,10 @@ return [
     */
 
     'guards' => [
-        BackstageConstant::GUARD => [
+        DevOpsConstant::GUARD => [
             // 'driver' => 'sanctum',
             'driver' => 'passport',
-            'provider' => BackstageConstant::GUARD,
+            'provider' => DevOpsConstant::GUARD,
         ],
 
         'web' => [
@@ -69,7 +69,7 @@ return [
     */
 
     'providers' => [
-        BackstageConstant::GUARD => [
+        DevOpsConstant::GUARD => [
             'driver' => 'eloquent',
             'model' => AdminInfoModel::class,
         ],

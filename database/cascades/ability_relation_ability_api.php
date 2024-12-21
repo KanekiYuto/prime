@@ -1,21 +1,19 @@
 <?php
 
-use App\Models\Admin\Role as Model;
 use Handyfit\Framework\Cascade\Schema;
 use Handyfit\Framework\Cascade\Cascade;
 use Handyfit\Framework\Cascade\Blueprint;
-use Handyfit\Framework\Foundation\Hook\Eloquent as Hook;
 use Handyfit\Framework\Foundation\Database\Eloquent\Casts\AutoTimezone;
 
 return Cascade::configure()->withTable(
-    'admin_role',
-    '管理员权限表'
+    'ability_relation_ability_api',
+    '能力信息 - 接口能力 - 关联'
 )->withSchema(function (Schema $schema) {
 
     $schema->create(function (Blueprint $table) {
-        $table->bigInteger('id')->primary()->unique()->fillable()->comment('管理员角色ID');
-        $table->string('name', 32)->fillable()->comment('管理员角色名称');
-        $table->string('explain', 64)->nullable()->fillable()->comment('管理员角色说明');
+        $table->bigInteger('id')->primary()->unique()->fillable()->comment('ID');
+        $table->bigInteger('ability_id')->fillable()->comment('能力信息 - ID');
+        $table->bigInteger('api_id')->fillable()->comment('接口能力 - ID');
         $table->bigInteger('created_at')->cast(AutoTimezone::class)->fillable()->comment('创建时间');
         $table->bigInteger('updated_at')->cast(AutoTimezone::class)->fillable()->comment('修改时间');
     });
@@ -24,4 +22,4 @@ return Cascade::configure()->withTable(
 
     $schema->dropIfExists();
 
-})->withMigration()->withModel(Model::class, Hook::class);
+});

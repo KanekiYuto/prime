@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Backstage\Admin;
+namespace App\Http\Controllers\DevOps\Admin;
 
 use Illuminate\Support\Facades\Request;
 use Kaneki\Diverse\PagingQuery\PagingQuery;
 use Handyfit\Framework\Preacher\PreacherResponse;
-use App\Http\Service\Backstage\Admin\LogService;
+use App\Http\Service\DevOps\Admin\LogService;
 use App\Cascade\Trace\Eloquent\Admin\LogTrace as TheTrace;
 
 /**

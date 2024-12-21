@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Service\Backstage\Admin;
+namespace App\Http\Service\DevOps\Admin;
 
 use Illuminate\Support\Facades\Hash;
 use Kaneki\Diverse\Equation\Equation;

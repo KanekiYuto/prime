@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Ability\Ability;
 use Laravel\Passport\Passport;
 use App\Watchers\RequestWatcher;
 use Illuminate\Support\ServiceProvider;
@@ -26,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
 	{
 		$watcher = $this->app->make(RequestWatcher::class);
 		$watcher->register($this->app);
-
-		Ability::use();
 
         Passport::tokensExpireIn(now()->addDays(15));
         Passport::refreshTokensExpireIn(now()->addDays(30));

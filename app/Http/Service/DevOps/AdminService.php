@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Service\Backstage;
+namespace App\Http\Service\DevOps;
 
 use Illuminate\Support\Facades\Hash;
-use App\Constants\BackstageConstant;
+use App\Constants\DevOpsConstant;
 use Illuminate\Support\Facades\Cache;
 use App\Cascade\Models\Admin\RoleModel;
 use Illuminate\Support\Facades\Request;
@@ -32,7 +32,7 @@ class AdminService
      */
     public static function user(Request $request): PreacherResponse
     {
-        $user = $request::user(BackstageConstant::GUARD);
+        $user = $request::user(DevOpsConstant::GUARD);
 
         if (!($user instanceof AdminInfoModel)) {
             return Preacher::msgCode(
@@ -74,14 +74,13 @@ class AdminService
      * @param  AdminInfoModel  $model
      *
      * @return PreacherResponse
-     * @todo 需要重构
-     *
      */
     public static function info(AdminInfoModel $model): PreacherResponse
     {
-        $roleInfo = $model->role();
+        $roleData = $model->role();
 
-        $roleModel = RoleModel::query()->find($roleInfo->value(RoleTrace::ID));
+        $roleModel = RoleModel::query()->find($roleData->value(RoleTrace::ID));
+
         $abilities = $roleModel->abilities()->get([
             AbilityTrace::CLIENT_ROUTING,
             AbilityTrace::OPERATION,
@@ -106,7 +105,7 @@ class AdminService
             'id' => $model[AdminInfoTrace::ID],
             'account' => $model[AdminInfoTrace::ACCOUNT],
             'email' => $model[AdminInfoTrace::EMAIL],
-            'role' => $roleInfo->value(AdminRoleTrace::NAME),
+            'role' => $roleData->value(AdminRoleTrace::NAME),
             'permissions' => $permissions,
         ]);
     }

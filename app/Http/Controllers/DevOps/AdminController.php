@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Backstage;
+namespace App\Http\Controllers\DevOps;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
-use App\Http\Service\Backstage\AdminService;
+use App\Http\Service\DevOps\AdminService;
 use Handyfit\Framework\Support\Facades\Preacher;
 use Handyfit\Framework\Preacher\PreacherResponse;
 
@@ -76,15 +76,11 @@ class AdminController
      */
     public function info(Request $request): PreacherResponse
     {
-        sleep(1);
-
         $user = AdminService::user($request);
 
         if (!$user->isSucceed()) {
             return $user;
         }
-
-        sleep(1);
 
         $user = $user->getModel();
         $createToken = AdminService::createToken($user);

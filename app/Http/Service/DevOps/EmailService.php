@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Service\Backstage;
+namespace App\Http\Service\DevOps;
 
 use App\Mail\IdentifyingCode;
 use Illuminate\Support\Facades\Mail;

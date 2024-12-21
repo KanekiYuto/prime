@@ -64,8 +64,7 @@ return new class extends Migration {
 			$table->bigInteger(column: TheEloquentTrace::ID)->primary()->unique()->comment(comment: '能力 - [ID]');
 			$table->string(column: TheEloquentTrace::NAME, length: 32)->comment(comment: '能力名称');
 			$table->string(column: TheEloquentTrace::EXPLAIN, length: 64)->nullable()->comment(comment: '能力解释');
-			$table->uuid(column: TheEloquentTrace::CURRENT_UUID)->comment(comment: '唯一标识');
-			$table->uuid(column: TheEloquentTrace::PARENT_UUID)->comment(comment: '父级唯一标识');
+			$table->bigInteger(column: TheEloquentTrace::PARENT_ID)->comment(comment: '父级 - ID');
 			$table->json(column: TheEloquentTrace::SERVER_ROUTING)->comment(comment: '服务端路由');
 			$table->string(column: TheEloquentTrace::CLIENT_ROUTING, length: 128)->comment(comment: '客户端路由');
 			$table->json(column: TheEloquentTrace::OPERATION)->comment(comment: '允许操作的权限');

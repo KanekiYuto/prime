@@ -7,7 +7,7 @@ namespace App\Constants;
  *
  * @author KanekiYuto
  */
-class BackstageConstant
+class DevOpsConstant
 {
 
     /**

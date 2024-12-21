@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Backstage;
+namespace App\Http\Controllers\DevOps;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Request;
-use App\Http\Service\Backstage\EmailService;
+use App\Http\Service\DevOps\EmailService;
 use Handyfit\Framework\Preacher\PreacherResponse;
 
 /**

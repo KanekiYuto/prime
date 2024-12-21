@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Constants\BackstageConstant;
+use App\Constants\DevOpsConstant;
 use App\Cascade\Models\Admin\InfoModel;
 use App\Cascade\Models\Admin\RoleModel;
 use Handyfit\Framework\Support\Facades\Preacher;
@@ -30,7 +30,7 @@ class BackstageAbility
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $user = $request->user(BackstageConstant::GUARD);
+        $user = $request->user(DevOpsConstant::GUARD);
 
         if (!($user instanceof InfoModel)) {
             return Preacher::msgCode(

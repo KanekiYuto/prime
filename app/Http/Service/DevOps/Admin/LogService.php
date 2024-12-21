@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Service\Backstage\Admin;
+namespace App\Http\Service\DevOps\Admin;
 
 use Kaneki\Diverse\Equation\Equation;
 use Kaneki\Diverse\Equation\Formulas;

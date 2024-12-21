@@ -3,7 +3,7 @@
 namespace App\Watchers;
 
 use Illuminate\Routing\Route;
-use App\Constants\BackstageConstant;
+use App\Constants\DevOpsConstant;
 use App\Cascade\Models\Admin\InfoModel;
 use App\Cascade\Trace\Eloquent\Admin\InfoTrace;
 use Illuminate\Contracts\Foundation\Application;
@@ -48,7 +48,7 @@ class RequestWatcher extends Watcher
         }
 
         // 排除非 [Guard] 路由
-        $user = $request->user(BackstageConstant::GUARD);
+        $user = $request->user(DevOpsConstant::GUARD);
 
         if (!($user instanceof InfoModel)) {
             return;

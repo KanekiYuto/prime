@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backstage\AdminController;
-use App\Http\Controllers\Backstage\Admin\LogController as AdminLogController;
-use App\Http\Controllers\Backstage\Admin\RoleController as AdminRoleController;
-use App\Http\Controllers\Backstage\Admin\InfoController as AdminInfoController;
-use App\Http\Controllers\Backstage\System\InfoController as SystemInfoController;
+use App\Http\Controllers\DevOps\AdminController;
+use App\Http\Controllers\DevOps\AbilityController;
+use App\Http\Controllers\DevOps\Admin\LogController as AdminLogController;
+use App\Http\Controllers\DevOps\Admin\RoleController as AdminRoleController;
+use App\Http\Controllers\DevOps\Admin\InfoController as AdminInfoController;
+use App\Http\Controllers\DevOps\System\InfoController as SystemInfoController;
 
 Route::middleware(['auth:admin'])->group(function () {
 
@@ -27,7 +28,7 @@ Route::middleware(['auth:admin'])->group(function () {
         // 管理员信息相关
         Route::controller(
             AdminInfoController::class
-        )->name('info')->prefix('info')->group(function () {
+        )->name('info.')->prefix('info')->group(function () {
             Route::get('paging', 'paging')->name('paging');
             Route::get('select', 'select')->name('select');
             Route::post('append', 'append')->name('append');
@@ -37,7 +38,7 @@ Route::middleware(['auth:admin'])->group(function () {
         // 管理员角色相关
         Route::controller(
             AdminRoleController::class
-        )->name('role')->prefix('role')->group(function () {
+        )->name('role.')->prefix('role')->group(function () {
             Route::get('paging', 'paging')->name('paging');
             Route::get('select', 'select')->name('select');
             Route::post('append', 'append')->name('append');
@@ -48,7 +49,7 @@ Route::middleware(['auth:admin'])->group(function () {
         // 管理员日志相关
         Route::controller(
             AdminLogController::class
-        )->name('log')->prefix('log')->group(function () {
+        )->name('log.')->prefix('log')->group(function () {
             Route::get('paging', 'paging')->name('paging');
         });
     });
@@ -57,10 +58,22 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::prefix('system')->name('system.')->group(function () {
 
         // 信息相关
-        Route::controller(SystemInfoController::class)->group(function () {
+        Route::controller(
+            SystemInfoController::class
+        )->name('info.')->prefix('info')->group(function () {
             Route::get('base', 'base')->name('base');
-        })->name('info')->prefix('info');
+        });
 
     })->withoutMiddleware(['backstage.ability']);
+
+    Route::controller(
+        AbilityController::class
+    )->prefix('ability')->name('ability.')->group(function () {
+
+        Route::get('rely', 'rely')->name('rely');
+        Route::get('abilities', 'abilities')->name('abilities');
+        Route::get('groups', 'groups')->name('groups');
+
+    });
 
 });

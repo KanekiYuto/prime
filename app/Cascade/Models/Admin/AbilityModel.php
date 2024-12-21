@@ -96,6 +96,7 @@ class AbilityModel extends Model
     public function casts(): array
     {
         return array_merge(parent::casts(), [
+			TheEloquentTrace::ID => 'string',
 			TheEloquentTrace::SERVER_ROUTING => 'json',
 			TheEloquentTrace::OPERATION => 'json',
 			TheEloquentTrace::CREATED_AT => AutoTimezoneCastPackage::class,

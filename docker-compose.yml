@@ -54,12 +54,12 @@ services:
         environment:
             #           MySQL 时区
             TZ: 'Asia/Shanghai'
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_PASSWORD: '${MASTER_DB_PASSWORD}'
             MYSQL_ROOT_HOST: "%"
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
-            #            是否允许密码为空 （默认允许）
+            MYSQL_DATABASE: '${MASTER_DB_DATABASE}'
+            MYSQL_USER: '${MASTER_DB_USERNAME}'
+            MYSQL_PASSWORD: '${MASTER_DB_PASSWORD}'
+            # 是否允许密码为空 （默认允许）
             MYSQL_ALLOW_EMPTY_PASSWORD: 0
         volumes:
             - './docker/conf/mysql/my.cnf:/etc/my.cnf'
@@ -68,7 +68,7 @@ services:
         networks:
             - default
         healthcheck:
-            test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+            test: [ "CMD", "mysqladmin", "ping", "-p${MASTER_DB_PASSWORD}" ]
             retries: 3
             timeout: 5s
 

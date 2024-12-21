@@ -48,18 +48,11 @@ class AbilityTrace extends EloquentTrace
 	const EXPLAIN = 'explain';
 	
 	/**
-	 * 唯一标识
+	 * 父级 - ID
 	 *
 	 * @var string
 	 */
-	const CURRENT_UUID = 'current_uuid';
-	
-	/**
-	 * 父级唯一标识
-	 *
-	 * @var string
-	 */
-	const PARENT_UUID = 'parent_uuid';
+	const PARENT_ID = 'parent_id';
 	
 	/**
 	 * 服务端路由
@@ -116,6 +109,6 @@ class AbilityTrace extends EloquentTrace
      *
      * @var array<int, string>
      */
-    const FILLABLE = [self::ID, self::NAME, self::EXPLAIN, self::CURRENT_UUID, self::PARENT_UUID, self::SERVER_ROUTING, self::CLIENT_ROUTING, self::OPERATION, self::TYPE, self::CREATED_AT, self::UPDATED_AT];
+    const FILLABLE = [self::ID, self::NAME, self::EXPLAIN, self::PARENT_ID, self::SERVER_ROUTING, self::CLIENT_ROUTING, self::OPERATION, self::TYPE, self::CREATED_AT, self::UPDATED_AT];
 
 }

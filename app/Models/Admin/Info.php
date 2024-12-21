@@ -2,7 +2,6 @@
 
 namespace App\Models\Admin;
 
-//use Laravel\Sanctum\HasApiTokens;
 use Laravel\Passport\HasApiTokens;
 use App\Cascade\Models\Admin\RoleModel;
 use Illuminate\Notifications\Notifiable;
