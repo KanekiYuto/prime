@@ -48,11 +48,11 @@ class Paging
     /**
      * 构造一个分页参数实例
      *
-     * @param  int     $page
-     * @param  int     $prePage
-     * @param  string  $oderBy
-     * @param  string  $order
-     * @param  array   $query
+     * @param int    $page
+     * @param int    $prePage
+     * @param string $oderBy
+     * @param string $order
+     * @param array  $query
      *
      * @return void
      */

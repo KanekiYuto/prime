@@ -2,10 +2,10 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Cascade\Models\Admin\AbilityModel;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Cascade\Trace\Eloquent\AdminRole\AbilityTrace as AdminRoleAbilityTrace;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {

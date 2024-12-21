@@ -1,8 +1,8 @@
 <?php
 
+use Handyfit\Framework\Preacher\PreacherResponse as PResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Handyfit\Framework\Preacher\PreacherResponse as PResponse;
 
 //describe('管理员相关', function () {
 //

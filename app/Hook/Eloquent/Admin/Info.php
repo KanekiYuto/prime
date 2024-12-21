@@ -2,11 +2,11 @@
 
 namespace App\Hook\Eloquent\Admin;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-use Handyfit\Framework\Trace\EloquentTrace;
 use App\Cascade\Trace\Eloquent\Admin\InfoTrace;
 use Handyfit\Framework\Foundation\Hook\Eloquent as EloquentHook;
+use Handyfit\Framework\Trace\EloquentTrace;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * 管理员信息
@@ -19,9 +19,9 @@ class Info extends EloquentHook
     /**
      * 模型插入前的操作
      *
-     * @param  Model                    $model
-     * @param  Builder                  $query
-     * @param  InfoTrace|EloquentTrace  $eloquentTrace
+     * @param Model                   $model
+     * @param Builder                 $query
+     * @param InfoTrace|EloquentTrace $eloquentTrace
      *
      * @return bool
      */
@@ -46,9 +46,9 @@ class Info extends EloquentHook
     /**
      * 模型更新前的操作
      *
-     * @param  Model          $model
-     * @param  Builder        $query
-     * @param  EloquentTrace  $eloquentTrace
+     * @param Model         $model
+     * @param Builder       $query
+     * @param EloquentTrace $eloquentTrace
      *
      * @return bool
      */

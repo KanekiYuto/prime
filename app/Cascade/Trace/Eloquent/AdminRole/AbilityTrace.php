@@ -17,63 +17,62 @@ class AbilityTrace extends EloquentTrace
      *
      * @var string
      */
-	const TABLE = 'admin_role_ability';
+    public const TABLE = 'admin_role_ability';
 
     /**
      * 主键
      *
      * @var string
      */
-	const PRIMARY_KEY = self::ID;
+    public const PRIMARY_KEY = self::ID;
 
     /**
-	 * 角色能力 - [ID]
-	 *
-	 * @var string
-	 */
-	const ID = 'id';
-	
-	/**
-	 * 角色 - [ID]
-	 *
-	 * @var string
-	 */
-	const ROLE_ID = 'role_id';
-	
-	/**
-	 * 能力 - [ID]
-	 *
-	 * @var string
-	 */
-	const ABILITY_ID = 'ability_id';
-	
-	/**
-	 * 创建时间
-	 *
-	 * @var string
-	 */
-	const CREATED_AT = 'created_at';
-	
-	/**
-	 * 修改时间
-	 *
-	 * @var string
-	 */
-	const UPDATED_AT = 'updated_at';
-	
+     * 角色能力 - [ID]
+     *
+     * @var string
+     */
+    public const ID = 'id';
+
+    /**
+     * 角色 - [ID]
+     *
+     * @var string
+     */
+    public const ROLE_ID = 'role_id';
+
+    /**
+     * 能力 - [ID]
+     *
+     * @var string
+     */
+    public const ABILITY_ID = 'ability_id';
+
+    /**
+     * 创建时间
+     *
+     * @var string
+     */
+    public const CREATED_AT = 'created_at';
+
+    /**
+     * 修改时间
+     *
+     * @var string
+     */
+    public const UPDATED_AT = 'updated_at';
 
     /**
      * 隐藏列
      *
      * @var array<int, string>
      */
-    const HIDDEN = [];
+    public const HIDDEN = [];
 
     /**
      * 可填充的列
      *
      * @var array<int, string>
      */
-    const FILLABLE = [self::ID, self::ROLE_ID, self::ABILITY_ID, self::CREATED_AT, self::UPDATED_AT];
+    public const FILLABLE = [self::ID, self::ROLE_ID, self::ABILITY_ID, self::CREATED_AT, self::UPDATED_AT];
 
 }

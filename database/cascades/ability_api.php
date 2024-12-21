@@ -1,8 +1,8 @@
 <?php
 
-use Handyfit\Framework\Cascade\Schema;
-use Handyfit\Framework\Cascade\Cascade;
 use Handyfit\Framework\Cascade\Blueprint;
+use Handyfit\Framework\Cascade\Cascade;
+use Handyfit\Framework\Cascade\Schema;
 use Handyfit\Framework\Foundation\Database\Eloquent\Casts\AutoTimezone;
 
 return Cascade::configure()->withTable(

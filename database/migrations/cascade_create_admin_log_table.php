@@ -2,18 +2,18 @@
 
 use App\Cascade\Trace\Eloquent\Admin\LogTrace as TheEloquentTrace;
 use Handyfit\Framework\Foundation\Hook\Migration as TheHook;
-use Handyfit\Framework\Trace\EloquentTrace;
 use Handyfit\Framework\Hook\Migration as Hook;
+use Handyfit\Framework\Trace\EloquentTrace;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/**
+/*
  * Database Migration []
  *
  * @author KanekiYuto
  */
-return new class extends Migration {
+return new class() extends Migration {
 
     /**
      * Eloquent model tracing class
@@ -61,16 +61,16 @@ return new class extends Migration {
         $this->hook->upBefore($this->eloquentTrace);
 
         Schema::create(TheEloquentTrace::TABLE, function (Blueprint $table) {
-			$table->bigInteger(column: TheEloquentTrace::ID)->primary()->unique()->comment(comment: '管理员日志ID');
-			$table->bigInteger(column: TheEloquentTrace::ADMIN_ID)->comment(comment: '管理员ID');
-			$table->string(column: TheEloquentTrace::API, length: 128)->comment(comment: 'API名称');
-			$table->ipAddress(column: TheEloquentTrace::IPADDRESS)->comment(comment: '请求IP');
-			$table->json(column: TheEloquentTrace::PAYLOAD)->comment(comment: '请求荷载');
-			$table->json(column: TheEloquentTrace::HEADERS)->comment(comment: '请求头');
-			$table->json(column: TheEloquentTrace::RESPONSE)->comment(comment: '响应参数');
-			$table->bigInteger(column: TheEloquentTrace::CREATED_AT)->comment(comment: '创建时间');
-			$table->bigInteger(column: TheEloquentTrace::UPDATED_AT)->comment(comment: '修改时间');
-		});
+            $table->bigInteger(column: TheEloquentTrace::ID)->primary()->unique()->comment(comment: '管理员日志ID');
+            $table->bigInteger(column: TheEloquentTrace::ADMIN_ID)->comment(comment: '管理员ID');
+            $table->string(column: TheEloquentTrace::API, length: 128)->comment(comment: 'API名称');
+            $table->ipAddress(column: TheEloquentTrace::IPADDRESS)->comment(comment: '请求IP');
+            $table->json(column: TheEloquentTrace::PAYLOAD)->comment(comment: '请求荷载');
+            $table->json(column: TheEloquentTrace::HEADERS)->comment(comment: '请求头');
+            $table->json(column: TheEloquentTrace::RESPONSE)->comment(comment: '响应参数');
+            $table->bigInteger(column: TheEloquentTrace::CREATED_AT)->comment(comment: '创建时间');
+            $table->bigInteger(column: TheEloquentTrace::UPDATED_AT)->comment(comment: '修改时间');
+        });
 
         // Perform operations after the migration
         $this->hook->upAfter($this->eloquentTrace);

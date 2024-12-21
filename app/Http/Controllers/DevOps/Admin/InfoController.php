@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\DevOps\Admin;
 
+use App\Cascade\Trace\Eloquent\Admin\InfoTrace as TheTrace;
+use App\Http\Service\DevOps\Admin\InfoService;
+use Handyfit\Framework\Preacher\PreacherResponse;
+use Handyfit\Framework\Support\Facades\Preacher;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rules\Password;
 use Kaneki\Diverse\PagingQuery\PagingQuery;
-use App\Http\Service\DevOps\Admin\InfoService;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Handyfit\Framework\Preacher\PreacherResponse;
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace as TheTrace;
 
 /**
  * 管理员信息控制器
@@ -48,7 +48,7 @@ class InfoController
     /**
      * 分頁查詢獲取管理員信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -73,7 +73,7 @@ class InfoController
     /**
      * 新增管理員信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -102,7 +102,7 @@ class InfoController
     /**
      * 修改管理員信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */

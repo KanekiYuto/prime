@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Handyfit\Framework\Preacher\PreacherResponse as PResponse;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
+use Illuminate\Testing\Fluent\AssertableJson;
 
 $adminStack = collect()->push([
     'account' => 'phpunit@master',
@@ -22,7 +22,7 @@ test('DevOps: Admin login', function (string $account, string $pass) {
     ]);
 
     $response->assertStatus(200)->assertJson(
-        fn(AssertableJson $json) => $json->hasAll(
+        fn (AssertableJson $json) => $json->hasAll(
             ['code', 'msg', 'receipt']
         )->where(PResponse::DEFAULT_KEY_CODE, PResponse::RESP_CODE_SUCCEED)
     );
@@ -45,7 +45,7 @@ it('DevOps: Get admin info', function (string $uuid) {
     ])->get('/dev-ops/admin/info');
 
     $response->assertStatus(200)->assertJson(
-        fn(AssertableJson $json) => $json->hasAll(
+        fn (AssertableJson $json) => $json->hasAll(
             ['code', 'msg', 'receipt']
         )->where(PResponse::DEFAULT_KEY_CODE, PResponse::RESP_CODE_SUCCEED)
     );
@@ -78,7 +78,7 @@ describe('DevOps: Batch interface testing', function () use ($adminStackUuid) {
             ])->get($url);
 
             $response->assertStatus(200)->assertJson(
-                fn(AssertableJson $json) => $json->hasAll(
+                fn (AssertableJson $json) => $json->hasAll(
                     ['code', 'msg', 'paging']
                 )->where(PResponse::DEFAULT_KEY_CODE, PResponse::RESP_CODE_SUCCEED)
             );
@@ -96,7 +96,7 @@ describe('DevOps: Batch interface testing', function () use ($adminStackUuid) {
             ])->get($url);
 
             $response->assertStatus(200)->assertJson(
-                fn(AssertableJson $json) => $json->hasAll(
+                fn (AssertableJson $json) => $json->hasAll(
                     ['code', 'msg', 'rows']
                 )->where(PResponse::DEFAULT_KEY_CODE, PResponse::RESP_CODE_SUCCEED)
             );
@@ -111,7 +111,7 @@ it('Dev Ops: Admin logout', function (string $uuid) {
     ])->post('/dev-ops/admin/logout');
 
     $response->assertStatus(200)->assertJson(
-        fn(AssertableJson $json) => $json->hasAll(
+        fn (AssertableJson $json) => $json->hasAll(
             ['code', 'msg']
         )->where(PResponse::DEFAULT_KEY_CODE, PResponse::RESP_CODE_SUCCEED)
     );

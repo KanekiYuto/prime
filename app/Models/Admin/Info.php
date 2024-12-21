@@ -2,14 +2,14 @@
 
 namespace App\Models\Admin;
 
-use Laravel\Passport\HasApiTokens;
 use App\Cascade\Models\Admin\RoleModel;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Model;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
 use App\Cascade\Trace\Eloquent\Admin\InfoTrace;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Foundation\Auth\User as Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class Info extends Model
 {

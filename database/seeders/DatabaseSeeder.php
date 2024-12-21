@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->callOnce([
-            AdminInitSeeder::class
+            AdminInitSeeder::class,
         ]);
     }
 

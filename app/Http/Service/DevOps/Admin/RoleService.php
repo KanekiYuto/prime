@@ -2,14 +2,14 @@
 
 namespace App\Http\Service\DevOps\Admin;
 
-use App\Experimental\Crush\Crush;
-use Kaneki\Diverse\Equation\Equation;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Handyfit\Framework\Preacher\PreacherResponse;
-use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
 use App\Cascade\Models\Admin\RoleModel as AdminRole;
-use App\Experimental\Crush\Params\Paging as PagingParams;
+use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
 use App\Cascade\Trace\Eloquent\Admin\RoleTrace as TheTrace;
+use App\Experimental\Crush\Crush;
+use App\Experimental\Crush\Params\Paging as PagingParams;
+use Handyfit\Framework\Preacher\PreacherResponse;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Kaneki\Diverse\Equation\Equation;
 
 /**
  * 管理员角色服务类
@@ -22,7 +22,7 @@ class RoleService
     /**
      * 分页查询管理员角色信息
      *
-     * @param  PagingParams  $pagingParams
+     * @param PagingParams $pagingParams
      *
      * @return PreacherResponse
      */
@@ -59,12 +59,12 @@ class RoleService
     /**
      * 新增管理员角色信息
      *
-     * @param  string  $name
-     * @param  string  $explain
+     * @param string $name
+     * @param string $explain
      *
      * @return PreacherResponse
-     * @todo 需要更改
      *
+     * @todo 需要更改
      */
     public static function append(string $name, string $explain): PreacherResponse
     {
@@ -88,9 +88,9 @@ class RoleService
     /**
      * 修改管理员角色信息
      *
-     * @param  int     $id
-     * @param  string  $name
-     * @param  string  $explain
+     * @param int    $id
+     * @param string $name
+     * @param string $explain
      *
      * @return PreacherResponse
      */
@@ -119,7 +119,7 @@ class RoleService
     /**
      * 设置角色能力
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return PreacherResponse
      */
@@ -131,12 +131,12 @@ class RoleService
             AbilityTrace::TABLE . '.' . AbilityTrace::ID
         )->all();
 
-//        $abilities = $model->abilities()->get([
-//            AbilityTrace::TABLE . '.' . AbilityTrace::ID,
-//            AbilityTrace::TABLE . '.' . AbilityTrace::PARENT_ID,
-//            AbilityTrace::TABLE . '.' . AbilityTrace::NAME,
-//            AbilityTrace::TABLE . '.' . AbilityTrace::EXPLAIN,
-//        ])->all();
+        //        $abilities = $model->abilities()->get([
+        //            AbilityTrace::TABLE . '.' . AbilityTrace::ID,
+        //            AbilityTrace::TABLE . '.' . AbilityTrace::PARENT_ID,
+        //            AbilityTrace::TABLE . '.' . AbilityTrace::NAME,
+        //            AbilityTrace::TABLE . '.' . AbilityTrace::EXPLAIN,
+        //        ])->all();
 
         return Preacher::rows($abilities);
     }

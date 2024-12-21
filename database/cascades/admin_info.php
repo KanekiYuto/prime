@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Admin\Info as Model;
-use Handyfit\Framework\Cascade\Schema;
-use Handyfit\Framework\Cascade\Cascade;
 use App\Hook\Eloquent\Admin\Info as Hook;
+use App\Models\Admin\Info as Model;
 use Handyfit\Framework\Cascade\Blueprint;
+use Handyfit\Framework\Cascade\Cascade;
+use Handyfit\Framework\Cascade\Schema;
 use Handyfit\Framework\Foundation\Database\Eloquent\Casts\AutoTimezone;
 
 return Cascade::configure()->withTable(

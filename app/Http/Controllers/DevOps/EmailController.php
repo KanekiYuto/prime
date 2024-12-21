@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\DevOps;
 
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Request;
 use App\Http\Service\DevOps\EmailService;
 use Handyfit\Framework\Preacher\PreacherResponse;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\Rule;
 
 /**
  * 邮箱控制器
@@ -18,7 +18,7 @@ class EmailController
     /**
      * 发生邮件
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */

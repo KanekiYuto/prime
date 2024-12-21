@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\DevOps;
 
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Request;
 use App\Cascade\Models\Admin\AbilityModel;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Handyfit\Framework\Preacher\PreacherResponse;
 use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
+use Handyfit\Framework\Preacher\PreacherResponse;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\Rule;
 
 /**
  * 能力控制器
@@ -20,7 +20,7 @@ class AbilityController
     /**
      * 根据能力依赖关系获取
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */

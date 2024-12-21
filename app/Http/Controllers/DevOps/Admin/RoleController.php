@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\DevOps\Admin;
 
+use App\Cascade\Trace\Eloquent\Admin\RoleTrace as TheTrace;
 use App\Experimental\Crush\Crush;
-use Illuminate\Support\Facades\Request;
 use App\Http\Service\DevOps\Admin\RoleService;
 use Handyfit\Framework\Preacher\PreacherResponse;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace as TheTrace;
+use Illuminate\Support\Facades\Request;
 
 /**
  * 管理员角色控制器
@@ -19,7 +19,7 @@ class RoleController
     /**
      * 分页查询管理员角色信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -52,7 +52,7 @@ class RoleController
     /**
      * 新增管理员角色信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -72,7 +72,7 @@ class RoleController
     /**
      * 修改管理员角色信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -98,7 +98,7 @@ class RoleController
     /**
      * 设置角色能力
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -118,7 +118,7 @@ class RoleController
     /**
      * 获取角色能力信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */

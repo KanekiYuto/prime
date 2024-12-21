@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\DevOps;
 
+use App\Http\Service\DevOps\AdminService;
+use Handyfit\Framework\Preacher\PreacherResponse;
+use Handyfit\Framework\Support\Facades\Preacher;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
-use App\Http\Service\DevOps\AdminService;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Handyfit\Framework\Preacher\PreacherResponse;
 
 /**
  * 管理员控制器
@@ -19,7 +19,7 @@ class AdminController
     /**
      * 管理员登录
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -50,7 +50,7 @@ class AdminController
     /**
      * 退出登录
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -70,7 +70,7 @@ class AdminController
     /**
      * 获取管理员信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -93,7 +93,7 @@ class AdminController
     /**
      * 修改管理员账号信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -128,7 +128,7 @@ class AdminController
     /**
      * 修改管理员邮箱
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -153,7 +153,7 @@ class AdminController
     /**
      * 更改管理员密码
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */

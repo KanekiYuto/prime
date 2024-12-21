@@ -1,23 +1,23 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Session\Middleware\StartSession;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Illuminate\Cookie\Middleware\EncryptCookies;
-use Handyfit\Framework\Preacher\PreacherResponse;
-use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Foundation\Configuration\Exceptions;
-use Illuminate\Routing\Middleware\SubstituteBindings;
-use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use App\Http\Middleware\Authenticate as AuthenticateMiddleware;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Http\Middleware\BackstageAbility as BackstageAbilityMiddleware;
-use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Handyfit\Framework\Foundation\Http\Middleware\PreacherResponse as PreacherResponseMiddleware;
+use Handyfit\Framework\Preacher\PreacherResponse;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))->withRouting(
     using: function () {

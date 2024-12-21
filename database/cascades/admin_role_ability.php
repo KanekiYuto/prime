@@ -1,10 +1,10 @@
 <?php
 
-use Handyfit\Framework\Cascade\Schema;
-use Handyfit\Framework\Cascade\Cascade;
 use Handyfit\Framework\Cascade\Blueprint;
-use Illuminate\Database\Eloquent\Model as Model;
+use Handyfit\Framework\Cascade\Cascade;
+use Handyfit\Framework\Cascade\Schema;
 use Handyfit\Framework\Foundation\Database\Eloquent\Casts\AutoTimezone;
+use Illuminate\Database\Eloquent\Model as Model;
 
 return Cascade::configure()->withTable(
     'admin_role_ability',

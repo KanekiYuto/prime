@@ -2,22 +2,32 @@
 
 namespace App\Cascade\Models\PersonalAccess;
 
-use Illuminate\Database\Eloquent\Builder;
-use Handyfit\Framework\Trace\EloquentTrace;
-use Handyfit\Framework\Hook\Eloquent as Hook;
 use App\Cascade\Trace\Eloquent\PersonalAccess\TokensTrace as TheEloquentTrace;
 use Handyfit\Framework\Foundation\Hook\Eloquent as TheHook;
+use Handyfit\Framework\Hook\Eloquent as Hook;
+use Handyfit\Framework\Trace\EloquentTrace;
+use Illuminate\Database\Eloquent\Builder;
 use Laravel\Sanctum\PersonalAccessToken as Model;
 
-
-
 /**
- * 
- *
  * @author KanekiYuto
-*/
+ */
 class TokensModel extends Model
 {
+
+    /**
+     * The primary key increases automatically
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * Indicates whether the model actively maintains a timestamp
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * Eloquent model tracing class
@@ -46,20 +56,6 @@ class TokensModel extends Model
      * @var string
      */
     protected $primaryKey = TheEloquentTrace::PRIMARY_KEY;
-
-    /**
-     * The primary key increases automatically
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * Indicates whether the model actively maintains a timestamp
-     *
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * Column properties that need to be hidden
@@ -101,7 +97,7 @@ class TokensModel extends Model
     /**
      * Operations performed before creation
      *
-     * @param  Builder  $query
+     * @param Builder $query
      *
      * @return bool
      */
@@ -117,7 +113,7 @@ class TokensModel extends Model
     /**
      * The operation performed before the update
      *
-     * @param  Builder  $query
+     * @param Builder $query
      *
      * @return bool
      */

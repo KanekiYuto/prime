@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DevOps\AdminController;
 use App\Http\Controllers\DevOps\AbilityController;
+use App\Http\Controllers\DevOps\Admin\InfoController as AdminInfoController;
 use App\Http\Controllers\DevOps\Admin\LogController as AdminLogController;
 use App\Http\Controllers\DevOps\Admin\RoleController as AdminRoleController;
-use App\Http\Controllers\DevOps\Admin\InfoController as AdminInfoController;
+use App\Http\Controllers\DevOps\AdminController;
 use App\Http\Controllers\DevOps\System\InfoController as SystemInfoController;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:admin'])->group(function () {
 

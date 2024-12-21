@@ -15,13 +15,13 @@ class DevOpsConstant
      *
      * @var int
      */
-    const TOKEN_VALIDITY = 30 * 60;
+    public const TOKEN_VALIDITY = 30 * 60;
 
     /**
      * 守卫名称
      *
      * @var string
      */
-    const GUARD = 'admin';
+    public const GUARD = 'admin';
 
 }

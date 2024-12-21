@@ -1,7 +1,7 @@
 <?php
 
-use App\Constants\DevOpsConstant;
 use App\Cascade\Models\Admin\InfoModel as AdminInfoModel;
+use App\Constants\DevOpsConstant;
 
 return [
 
@@ -17,7 +17,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD',  DevOpsConstant::GUARD),
+        'guard' => env('AUTH_GUARD', DevOpsConstant::GUARD),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 

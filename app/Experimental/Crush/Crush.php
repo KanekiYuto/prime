@@ -2,14 +2,14 @@
 
 namespace App\Experimental\Crush;
 
+use App\Experimental\Crush\Params\Paging;
 use Closure;
+use Handyfit\Framework\Preacher\PreacherResponse;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Database\Eloquent\Builder;
-use App\Experimental\Crush\Params\Paging;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Handyfit\Framework\Preacher\PreacherResponse;
 
 class Crush
 {
@@ -19,16 +19,16 @@ class Crush
      *
      * @var string
      */
-    const PAGING_PARAMS_MARK = 'query_';
+    public const PAGING_PARAMS_MARK = 'query_';
 
     /**
      * 处理请求部分
      *
-     * @param  Request  $request
-     * @param  string   $class
-     * @param  string   $method
-     * @param  array    $orderBy
-     * @param  array    $queryRule
+     * @param Request $request
+     * @param string  $class
+     * @param string  $method
+     * @param array   $orderBy
+     * @param array   $queryRule
      *
      * @return PreacherResponse
      */
@@ -79,53 +79,12 @@ class Crush
     }
 
     /**
-     * 为分页查询参数编码（加上数组键前缀）
-     *
-     * @param  array  $params
-     *
-     * @return array
-     */
-    private static function pagingParamsEncode(array $params): array
-    {
-        $stack = collect();
-
-        collect($params)->map(function (array $item, string $key) use ($stack) {
-            $stack->put(static::PAGING_PARAMS_MARK . $key, $item);
-        });
-
-        return $stack->all();
-    }
-
-    /**
-     * 为分页查询参数解码（解除数组键前缀）
-     *
-     * @param  array  $params
-     *
-     * @return array
-     */
-    private static function pagingParamsDecode(array $params): array
-    {
-        $stack = collect();
-
-        collect($params)->map(function (mixed $item, string $key) use ($stack) {
-            // 过滤无关参数
-            if (!Str::startsWith($key, static::PAGING_PARAMS_MARK)) {
-                return;
-            }
-
-            $stack->put(Str::of($key)->chopStart(static::PAGING_PARAMS_MARK), $item);
-        });
-
-        return $stack->all();
-    }
-
-    /**
      * 处理响应部分
      *
-     * @param  Builder<static>  $builder
-     * @param  Paging           $pagingParams
-     * @param  array            $columns
-     * @param  Closure|null     $callable
+     * @param Builder<static> $builder
+     * @param Paging          $pagingParams
+     * @param array           $columns
+     * @param Closure|null    $callable
      *
      * @return PreacherResponse
      */
@@ -156,6 +115,47 @@ class Crush
             $builder->total(),
             $items
         );
+    }
+
+    /**
+     * 为分页查询参数编码（加上数组键前缀）
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    private static function pagingParamsEncode(array $params): array
+    {
+        $stack = collect();
+
+        collect($params)->map(function (array $item, string $key) use ($stack) {
+            $stack->put(static::PAGING_PARAMS_MARK . $key, $item);
+        });
+
+        return $stack->all();
+    }
+
+    /**
+     * 为分页查询参数解码（解除数组键前缀）
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    private static function pagingParamsDecode(array $params): array
+    {
+        $stack = collect();
+
+        collect($params)->map(function (mixed $item, string $key) use ($stack) {
+            // 过滤无关参数
+            if (!Str::startsWith($key, static::PAGING_PARAMS_MARK)) {
+                return;
+            }
+
+            $stack->put(Str::of($key)->chopStart(static::PAGING_PARAMS_MARK), $item);
+        });
+
+        return $stack->all();
     }
 
 }

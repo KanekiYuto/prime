@@ -2,22 +2,34 @@
 
 namespace App\Cascade\Models\Admin;
 
-use Illuminate\Database\Eloquent\Builder;
-use Handyfit\Framework\Trace\EloquentTrace;
-use Handyfit\Framework\Hook\Eloquent as Hook;
 use App\Cascade\Trace\Eloquent\Admin\LogTrace as TheEloquentTrace;
-use Handyfit\Framework\Foundation\Hook\Eloquent as TheHook;
 use App\Models\Admin\Log as Model;
-
 use Handyfit\Framework\Foundation\Database\Eloquent\Casts\AutoTimezone as AutoTimezoneCastPackage;
+use Handyfit\Framework\Foundation\Hook\Eloquent as TheHook;
+use Handyfit\Framework\Hook\Eloquent as Hook;
+use Handyfit\Framework\Trace\EloquentTrace;
+
+use Illuminate\Database\Eloquent\Builder;
 
 /**
- * 
- *
  * @author KanekiYuto
-*/
+ */
 class LogModel extends Model
 {
+
+    /**
+     * The primary key increases automatically
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * Indicates whether the model actively maintains a timestamp
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * Eloquent model tracing class
@@ -46,20 +58,6 @@ class LogModel extends Model
      * @var string
      */
     protected $primaryKey = TheEloquentTrace::PRIMARY_KEY;
-
-    /**
-     * The primary key increases automatically
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * Indicates whether the model actively maintains a timestamp
-     *
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * Column properties that need to be hidden
@@ -96,18 +94,18 @@ class LogModel extends Model
     public function casts(): array
     {
         return array_merge(parent::casts(), [
-			TheEloquentTrace::PAYLOAD => 'json',
-			TheEloquentTrace::HEADERS => 'json',
-			TheEloquentTrace::RESPONSE => 'json',
-			TheEloquentTrace::CREATED_AT => AutoTimezoneCastPackage::class,
-			TheEloquentTrace::UPDATED_AT => AutoTimezoneCastPackage::class,
-		]);
+            TheEloquentTrace::PAYLOAD => 'json',
+            TheEloquentTrace::HEADERS => 'json',
+            TheEloquentTrace::RESPONSE => 'json',
+            TheEloquentTrace::CREATED_AT => AutoTimezoneCastPackage::class,
+            TheEloquentTrace::UPDATED_AT => AutoTimezoneCastPackage::class,
+        ]);
     }
 
     /**
      * Operations performed before creation
      *
-     * @param  Builder  $query
+     * @param Builder $query
      *
      * @return bool
      */
@@ -123,7 +121,7 @@ class LogModel extends Model
     /**
      * The operation performed before the update
      *
-     * @param  Builder  $query
+     * @param Builder $query
      *
      * @return bool
      */

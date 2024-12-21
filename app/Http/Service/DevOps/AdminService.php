@@ -2,18 +2,18 @@
 
 namespace App\Http\Service\DevOps;
 
-use Illuminate\Support\Facades\Hash;
-use App\Constants\DevOpsConstant;
-use Illuminate\Support\Facades\Cache;
-use App\Cascade\Models\Admin\RoleModel;
-use Illuminate\Support\Facades\Request;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Handyfit\Framework\Preacher\PreacherResponse;
-use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
 use App\Cascade\Models\Admin\InfoModel as AdminInfoModel;
+use App\Cascade\Models\Admin\RoleModel;
+use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
 use App\Cascade\Trace\Eloquent\Admin\InfoTrace as AdminInfoTrace;
+use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
 use App\Cascade\Trace\Eloquent\Admin\RoleTrace as AdminRoleTrace;
+use App\Constants\DevOpsConstant;
+use Handyfit\Framework\Preacher\PreacherResponse;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 
 /**
  * 管理员业务类
@@ -26,7 +26,7 @@ class AdminService
     /**
      * 获取用户信息
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return PreacherResponse
      */
@@ -47,7 +47,7 @@ class AdminService
     /**
      * 创建令牌凭证
      *
-     * @param  AdminInfoModel  $model
+     * @param AdminInfoModel $model
      *
      * @return PreacherResponse
      */
@@ -71,7 +71,7 @@ class AdminService
     /**
      * 获取用户信息
      *
-     * @param  AdminInfoModel  $model
+     * @param AdminInfoModel $model
      *
      * @return PreacherResponse
      */
@@ -113,8 +113,8 @@ class AdminService
     /**
      * 修改管理员账号信息
      *
-     * @param  int     $id
-     * @param  string  $account
+     * @param int    $id
+     * @param string $account
      *
      * @return PreacherResponse
      */
@@ -148,9 +148,9 @@ class AdminService
     /**
      * 修改管理员邮箱
      *
-     * @param  int     $id
-     * @param  int     $code
-     * @param  string  $email
+     * @param int    $id
+     * @param int    $code
+     * @param string $email
      *
      * @return PreacherResponse
      */
@@ -198,8 +198,8 @@ class AdminService
     /**
      * 更改管理员密码
      *
-     * @param  int     $id
-     * @param  string  $pass
+     * @param int    $id
+     * @param string $pass
      *
      * @return PreacherResponse
      */
@@ -220,8 +220,8 @@ class AdminService
     /**
      * 使用密码鉴权
      *
-     * @param  string  $account
-     * @param  string  $pass
+     * @param string $account
+     * @param string $pass
      *
      * @return PreacherResponse
      */

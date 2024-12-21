@@ -2,15 +2,15 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use Illuminate\Http\Request;
-use App\Constants\DevOpsConstant;
 use App\Cascade\Models\Admin\InfoModel;
 use App\Cascade\Models\Admin\RoleModel;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Handyfit\Framework\Preacher\PreacherResponse;
-use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
 use App\Cascade\Trace\Eloquent\Admin\AbilityTrace;
+use App\Cascade\Trace\Eloquent\Admin\RoleTrace;
+use App\Constants\DevOpsConstant;
+use Closure;
+use Handyfit\Framework\Preacher\PreacherResponse;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Illuminate\Http\Request;
 
 /**
  * 后台能力验证中间件
@@ -23,8 +23,8 @@ class BackstageAbility
     /**
      * 处理传入的请求
      *
-     * @param  Request  $request
-     * @param  Closure  $next
+     * @param Request $request
+     * @param Closure $next
      *
      * @return mixed
      */

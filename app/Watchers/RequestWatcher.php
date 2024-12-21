@@ -2,14 +2,14 @@
 
 namespace App\Watchers;
 
-use Illuminate\Routing\Route;
-use App\Constants\DevOpsConstant;
 use App\Cascade\Models\Admin\InfoModel;
-use App\Cascade\Trace\Eloquent\Admin\InfoTrace;
-use Illuminate\Contracts\Foundation\Application;
 use App\Cascade\Models\Admin\LogModel as AdminLog;
-use Illuminate\Foundation\Http\Events\RequestHandled;
+use App\Cascade\Trace\Eloquent\Admin\InfoTrace;
 use App\Cascade\Trace\Eloquent\Admin\LogTrace as TheTrace;
+use App\Constants\DevOpsConstant;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Foundation\Http\Events\RequestHandled;
+use Illuminate\Routing\Route;
 
 /**
  * 请求监视器
@@ -22,7 +22,7 @@ class RequestWatcher extends Watcher
     /**
      * Register the watcher.
      *
-     * @param  Application  $app
+     * @param Application $app
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class RequestWatcher extends Watcher
     /**
      * Record an incoming HTTP request.
      *
-     * @param  RequestHandled  $event
+     * @param RequestHandled $event
      *
      * @return void
      */
