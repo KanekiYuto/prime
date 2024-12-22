@@ -17,45 +17,56 @@ class QuerySummary extends Summary
      *
      * @var string
      */
-	public const TABLE = 'ability_query';
+    public const TABLE = 'ability_query';
 
     /**
      * 主键
      *
      * @var string
      */
-	public const PRIMARY_KEY = self::ID;
+    public const PRIMARY_KEY = self::ID;
 
     /**
-	 * ID
-	 *
-	 * @var string
-	 */public const ID = 'id';
-	/**
-	 * 名称
-	 *
-	 * @var string
-	 */public const NAME = 'name';
-	/**
-	 * 说明
-	 *
-	 * @var string
-	 */public const EXPLAIN = 'explain';
-	/**
-	 * 实例
-	 *
-	 * @var string
-	 */public const INSTANCE = 'instance';
-	/**
-	 * 创建时间
-	 *
-	 * @var string
-	 */public const CREATED_AT = 'created_at';
-	/**
-	 * 修改时间
-	 *
-	 * @var string
-	 */public const UPDATED_AT = 'updated_at';
+     * ID
+     *
+     * @var string
+     */
+    public const ID = 'id';
+
+    /**
+     * 名称
+     *
+     * @var string
+     */
+    public const NAME = 'name';
+
+    /**
+     * 说明
+     *
+     * @var string
+     */
+    public const EXPLAIN = 'explain';
+
+    /**
+     * 实例
+     *
+     * @var string
+     */
+    public const INSTANCE = 'instance';
+
+    /**
+     * 创建时间
+     *
+     * @var string
+     */
+    public const CREATED_AT = 'created_at';
+
+    /**
+     * 修改时间
+     *
+     * @var string
+     */
+    public const UPDATED_AT = 'updated_at';
 
     /**
      * 隐藏列

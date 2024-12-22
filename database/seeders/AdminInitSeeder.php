@@ -4,11 +4,11 @@ namespace Database\Seeders;
 
 use App\Cascade\Models\Admin\AbilityModel;
 use App\Cascade\Models\Admin\InfoModel as AdminInfo;
+use App\Cascade\Models\Admin\Role\AbilityModel as AdminRoleAbilityModel;
 use App\Cascade\Models\Admin\RoleModel;
-use App\Cascade\Models\AdminRole\AbilityModel as AdminRoleAbilityModel;
 use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
+use App\Cascade\Summaries\Admin\Role\AbilitySummary as AdminRoleAbilityTrace;
 use App\Cascade\Summaries\Admin\RoleSummary;
-use App\Cascade\Summaries\AdminRole\AbilitySummary as AdminRoleAbilityTrace;
 use App\Seeders\Ability;
 use Handyfit\Framework\Preacher\PreacherResponse;
 use Handyfit\Framework\Support\Facades\Preacher;

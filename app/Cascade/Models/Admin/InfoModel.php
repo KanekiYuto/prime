@@ -2,22 +2,34 @@
 
 namespace App\Cascade\Models\Admin;
 
-use Illuminate\Database\Eloquent\Builder;
-use Handyfit\Framework\Summary\Summary;
-use Handyfit\Framework\Hook\Eloquent as Hook;
 use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
 use App\Hook\Eloquent\Admin\Info as TheHook;
 use App\Models\Admin\Info as Model;
-
 use Handyfit\Framework\Foundation\Database\Eloquent\Casts\AutoTimezone as AutoTimezoneCastPackage;
+use Handyfit\Framework\Hook\Eloquent as Hook;
+use Handyfit\Framework\Summary\Summary;
+
+use Illuminate\Database\Eloquent\Builder;
 
 /**
- * 
- *
  * @author KanekiYuto
-*/
+ */
 class InfoModel extends Model
 {
+
+    /**
+     * The primary key increases automatically
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * Indicates whether the model actively maintains a timestamp
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * Summary class
@@ -46,20 +58,6 @@ class InfoModel extends Model
      * @var string
      */
     protected $primaryKey = TheSummary::PRIMARY_KEY;
-
-    /**
-     * The primary key increases automatically
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * Indicates whether the model actively maintains a timestamp
-     *
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * Column properties that need to be hidden
@@ -96,15 +94,15 @@ class InfoModel extends Model
     public function casts(): array
     {
         return array_merge(parent::casts(), [
-			TheSummary::CREATED_AT => AutoTimezoneCastPackage::class,
-			TheSummary::UPDATED_AT => AutoTimezoneCastPackage::class,
-		]);
+            TheSummary::CREATED_AT => AutoTimezoneCastPackage::class,
+            TheSummary::UPDATED_AT => AutoTimezoneCastPackage::class,
+        ]);
     }
 
     /**
      * Operations performed before creation
      *
-     * @param  Builder  $query
+     * @param Builder $query
      *
      * @return bool
      */
@@ -120,7 +118,7 @@ class InfoModel extends Model
     /**
      * The operation performed before the update
      *
-     * @param  Builder  $query
+     * @param Builder $query
      *
      * @return bool
      */

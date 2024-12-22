@@ -1,5 +1,6 @@
 <?php
 
+use Handyfit\Framework\CascadeServiceProvider;
 use Handyfit\Framework\HandyFitServiceProvider;
 
 return [
@@ -7,4 +8,5 @@ return [
     App\Providers\PreacherServiceProvider::class,
     App\Providers\TelescopeServiceProvider::class,
     HandyFitServiceProvider::class,
+    CascadeServiceProvider::class,
 ];

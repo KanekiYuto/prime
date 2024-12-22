@@ -2,11 +2,11 @@
 
 namespace App\Hook\Eloquent\Admin;
 
-use Handyfit\Framework\Summary\Summary;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
 use Handyfit\Framework\Foundation\Hook\Eloquent as EloquentHook;
+use Handyfit\Framework\Summary\Summary;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * 管理员信息
@@ -19,9 +19,9 @@ class Info extends EloquentHook
     /**
      * 模型插入前的操作
      *
-     * @param  Model               $model
-     * @param  Builder             $query
-     * @param  TheSummary|Summary  $summary
+     * @param Model              $model
+     * @param Builder            $query
+     * @param TheSummary|Summary $summary
      *
      * @return bool
      */
@@ -46,9 +46,9 @@ class Info extends EloquentHook
     /**
      * 模型更新前的操作
      *
-     * @param  Model    $model
-     * @param  Builder  $query
-     * @param  Summary  $summary
+     * @param Model   $model
+     * @param Builder $query
+     * @param Summary $summary
      *
      * @return bool
      */

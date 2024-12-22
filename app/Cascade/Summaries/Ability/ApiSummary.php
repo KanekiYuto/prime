@@ -17,45 +17,56 @@ class ApiSummary extends Summary
      *
      * @var string
      */
-	public const TABLE = 'ability_api';
+    public const TABLE = 'ability_api';
 
     /**
      * 主键
      *
      * @var string
      */
-	public const PRIMARY_KEY = self::ID;
+    public const PRIMARY_KEY = self::ID;
 
     /**
-	 * ID
-	 *
-	 * @var string
-	 */public const ID = 'id';
-	/**
-	 * 名称
-	 *
-	 * @var string
-	 */public const NAME = 'name';
-	/**
-	 * 说明
-	 *
-	 * @var string
-	 */public const EXPLAIN = 'explain';
-	/**
-	 * 路由名称
-	 *
-	 * @var string
-	 */public const ROUTE = 'route';
-	/**
-	 * 创建时间
-	 *
-	 * @var string
-	 */public const CREATED_AT = 'created_at';
-	/**
-	 * 修改时间
-	 *
-	 * @var string
-	 */public const UPDATED_AT = 'updated_at';
+     * ID
+     *
+     * @var string
+     */
+    public const ID = 'id';
+
+    /**
+     * 名称
+     *
+     * @var string
+     */
+    public const NAME = 'name';
+
+    /**
+     * 说明
+     *
+     * @var string
+     */
+    public const EXPLAIN = 'explain';
+
+    /**
+     * 路由名称
+     *
+     * @var string
+     */
+    public const ROUTE = 'route';
+
+    /**
+     * 创建时间
+     *
+     * @var string
+     */
+    public const CREATED_AT = 'created_at';
+
+    /**
+     * 修改时间
+     *
+     * @var string
+     */
+    public const UPDATED_AT = 'updated_at';
 
     /**
      * 隐藏列

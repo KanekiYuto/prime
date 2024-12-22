@@ -17,65 +17,84 @@ class AbilitySummary extends Summary
      *
      * @var string
      */
-	public const TABLE = 'admin_ability';
+    public const TABLE = 'admin_ability';
 
     /**
      * 主键
      *
      * @var string
      */
-	public const PRIMARY_KEY = self::ID;
+    public const PRIMARY_KEY = self::ID;
 
     /**
-	 * 能力 - [ID]
-	 *
-	 * @var string
-	 */public const ID = 'id';
-	/**
-	 * 能力名称
-	 *
-	 * @var string
-	 */public const NAME = 'name';
-	/**
-	 * 能力解释
-	 *
-	 * @var string
-	 */public const EXPLAIN = 'explain';
-	/**
-	 * 父级 - ID
-	 *
-	 * @var string
-	 */public const PARENT_ID = 'parent_id';
-	/**
-	 * 服务端路由
-	 *
-	 * @var string
-	 */public const SERVER_ROUTING = 'server_routing';
-	/**
-	 * 客户端路由
-	 *
-	 * @var string
-	 */public const CLIENT_ROUTING = 'client_routing';
-	/**
-	 * 允许操作的权限
-	 *
-	 * @var string
-	 */public const OPERATION = 'operation';
-	/**
-	 * 能力类型
-	 *
-	 * @var string
-	 */public const TYPE = 'type';
-	/**
-	 * 创建时间
-	 *
-	 * @var string
-	 */public const CREATED_AT = 'created_at';
-	/**
-	 * 修改时间
-	 *
-	 * @var string
-	 */public const UPDATED_AT = 'updated_at';
+     * 能力 - [ID]
+     *
+     * @var string
+     */
+    public const ID = 'id';
+
+    /**
+     * 能力名称
+     *
+     * @var string
+     */
+    public const NAME = 'name';
+
+    /**
+     * 能力解释
+     *
+     * @var string
+     */
+    public const EXPLAIN = 'explain';
+
+    /**
+     * 父级 - ID
+     *
+     * @var string
+     */
+    public const PARENT_ID = 'parent_id';
+
+    /**
+     * 服务端路由
+     *
+     * @var string
+     */
+    public const SERVER_ROUTING = 'server_routing';
+
+    /**
+     * 客户端路由
+     *
+     * @var string
+     */
+    public const CLIENT_ROUTING = 'client_routing';
+
+    /**
+     * 允许操作的权限
+     *
+     * @var string
+     */
+    public const OPERATION = 'operation';
+
+    /**
+     * 能力类型
+     *
+     * @var string
+     */
+    public const TYPE = 'type';
+
+    /**
+     * 创建时间
+     *
+     * @var string
+     */
+    public const CREATED_AT = 'created_at';
+
+    /**
+     * 修改时间
+     *
+     * @var string
+     */
+    public const UPDATED_AT = 'updated_at';
 
     /**
      * 隐藏列

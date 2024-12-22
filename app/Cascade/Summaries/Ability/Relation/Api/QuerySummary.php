@@ -17,40 +17,49 @@ class QuerySummary extends Summary
      *
      * @var string
      */
-	public const TABLE = 'ability_relation_api_query';
+    public const TABLE = 'ability_relation_api_query';
 
     /**
      * 主键
      *
      * @var string
      */
-	public const PRIMARY_KEY = self::ID;
+    public const PRIMARY_KEY = self::ID;
 
     /**
-	 * ID
-	 *
-	 * @var string
-	 */public const ID = 'id';
-	/**
-	 * 接口能力 - ID
-	 *
-	 * @var string
-	 */public const API_ID = 'api_id';
-	/**
-	 * 查询能力 - ID
-	 *
-	 * @var string
-	 */public const QUERY_ID = 'query_id';
-	/**
-	 * 创建时间
-	 *
-	 * @var string
-	 */public const CREATED_AT = 'created_at';
-	/**
-	 * 修改时间
-	 *
-	 * @var string
-	 */public const UPDATED_AT = 'updated_at';
+     * ID
+     *
+     * @var string
+     */
+    public const ID = 'id';
+
+    /**
+     * 接口能力 - ID
+     *
+     * @var string
+     */
+    public const API_ID = 'api_id';
+
+    /**
+     * 查询能力 - ID
+     *
+     * @var string
+     */
+    public const QUERY_ID = 'query_id';
+
+    /**
+     * 创建时间
+     *
+     * @var string
+     */
+    public const CREATED_AT = 'created_at';
+
+    /**
+     * 修改时间
+     *
+     * @var string
+     */
+    public const UPDATED_AT = 'updated_at';
 
     /**
      * 隐藏列

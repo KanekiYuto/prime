@@ -17,50 +17,63 @@ class InfoSummary extends Summary
      *
      * @var string
      */
-	public const TABLE = 'ability_info';
+    public const TABLE = 'ability_info';
 
     /**
      * 主键
      *
      * @var string
      */
-	public const PRIMARY_KEY = self::ID;
+    public const PRIMARY_KEY = self::ID;
 
     /**
-	 * ID
-	 *
-	 * @var string
-	 */public const ID = 'id';
-	/**
-	 * 名称
-	 *
-	 * @var string
-	 */public const NAME = 'name';
-	/**
-	 * 说明
-	 *
-	 * @var string
-	 */public const EXPLAIN = 'explain';
-	/**
-	 * 父级 - ID
-	 *
-	 * @var string
-	 */public const PARENT_ID = 'parent_id';
-	/**
-	 * 类型
-	 *
-	 * @var string
-	 */public const TYPE = 'type';
-	/**
-	 * 创建时间
-	 *
-	 * @var string
-	 */public const CREATED_AT = 'created_at';
-	/**
-	 * 修改时间
-	 *
-	 * @var string
-	 */public const UPDATED_AT = 'updated_at';
+     * ID
+     *
+     * @var string
+     */
+    public const ID = 'id';
+
+    /**
+     * 名称
+     *
+     * @var string
+     */
+    public const NAME = 'name';
+
+    /**
+     * 说明
+     *
+     * @var string
+     */
+    public const EXPLAIN = 'explain';
+
+    /**
+     * 父级 - ID
+     *
+     * @var string
+     */
+    public const PARENT_ID = 'parent_id';
+
+    /**
+     * 类型
+     *
+     * @var string
+     */
+    public const TYPE = 'type';
+
+    /**
+     * 创建时间
+     *
+     * @var string
+     */
+    public const CREATED_AT = 'created_at';
+
+    /**
+     * 修改时间
+     *
+     * @var string
+     */
+    public const UPDATED_AT = 'updated_at';
 
     /**
      * 隐藏列

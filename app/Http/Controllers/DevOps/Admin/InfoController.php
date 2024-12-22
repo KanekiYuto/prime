@@ -19,23 +19,6 @@ class InfoController
 {
 
     /**
-     * 容器
-     *
-     * @var InfoService
-     */
-    private InfoService $service;
-
-    /**
-     * 构造控制器实例
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->service = new InfoService;
-    }
-
-    /**
      * 獲取選項數據
      *
      * @return PreacherResponse

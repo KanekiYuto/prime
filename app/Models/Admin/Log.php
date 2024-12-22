@@ -3,9 +3,9 @@
 namespace App\Models\Admin;
 
 use App\Cascade\Models\Admin\InfoModel;
-use Illuminate\Database\Eloquent\Model;
-use App\Cascade\Summaries\Admin\LogSummary;
 use App\Cascade\Summaries\Admin\InfoSummary;
+use App\Cascade\Summaries\Admin\LogSummary;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Log extends Model

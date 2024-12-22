@@ -17,50 +17,63 @@ class InfoSummary extends Summary
      *
      * @var string
      */
-	public const TABLE = 'admin_info';
+    public const TABLE = 'admin_info';
 
     /**
      * 主键
      *
      * @var string
      */
-	public const PRIMARY_KEY = self::ID;
+    public const PRIMARY_KEY = self::ID;
 
     /**
-	 * 管理员ID
-	 *
-	 * @var string
-	 */public const ID = 'id';
-	/**
-	 * 账号
-	 *
-	 * @var string
-	 */public const ACCOUNT = 'account';
-	/**
-	 * 角色ID
-	 *
-	 * @var string
-	 */public const ADMIN_ROLE_ID = 'admin_role_id';
-	/**
-	 * 邮箱
-	 *
-	 * @var string
-	 */public const EMAIL = 'email';
-	/**
-	 * 密码
-	 *
-	 * @var string
-	 */public const PASS = 'pass';
-	/**
-	 * 创建时间
-	 *
-	 * @var string
-	 */public const CREATED_AT = 'created_at';
-	/**
-	 * 修改时间
-	 *
-	 * @var string
-	 */public const UPDATED_AT = 'updated_at';
+     * 管理员ID
+     *
+     * @var string
+     */
+    public const ID = 'id';
+
+    /**
+     * 账号
+     *
+     * @var string
+     */
+    public const ACCOUNT = 'account';
+
+    /**
+     * 角色ID
+     *
+     * @var string
+     */
+    public const ADMIN_ROLE_ID = 'admin_role_id';
+
+    /**
+     * 邮箱
+     *
+     * @var string
+     */
+    public const EMAIL = 'email';
+
+    /**
+     * 密码
+     *
+     * @var string
+     */
+    public const PASS = 'pass';
+
+    /**
+     * 创建时间
+     *
+     * @var string
+     */
+    public const CREATED_AT = 'created_at';
+
+    /**
+     * 修改时间
+     *
+     * @var string
+     */
+    public const UPDATED_AT = 'updated_at';
 
     /**
      * 隐藏列

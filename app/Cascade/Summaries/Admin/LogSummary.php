@@ -17,60 +17,77 @@ class LogSummary extends Summary
      *
      * @var string
      */
-	public const TABLE = 'admin_log';
+    public const TABLE = 'admin_log';
 
     /**
      * 主键
      *
      * @var string
      */
-	public const PRIMARY_KEY = self::ID;
+    public const PRIMARY_KEY = self::ID;
 
     /**
-	 * 管理员日志ID
-	 *
-	 * @var string
-	 */public const ID = 'id';
-	/**
-	 * 管理员ID
-	 *
-	 * @var string
-	 */public const ADMIN_ID = 'admin_id';
-	/**
-	 * API名称
-	 *
-	 * @var string
-	 */public const API = 'api';
-	/**
-	 * 请求IP
-	 *
-	 * @var string
-	 */public const IPADDRESS = 'ipaddress';
-	/**
-	 * 请求荷载
-	 *
-	 * @var string
-	 */public const PAYLOAD = 'payload';
-	/**
-	 * 请求头
-	 *
-	 * @var string
-	 */public const HEADERS = 'headers';
-	/**
-	 * 响应参数
-	 *
-	 * @var string
-	 */public const RESPONSE = 'response';
-	/**
-	 * 创建时间
-	 *
-	 * @var string
-	 */public const CREATED_AT = 'created_at';
-	/**
-	 * 修改时间
-	 *
-	 * @var string
-	 */public const UPDATED_AT = 'updated_at';
+     * 管理员日志ID
+     *
+     * @var string
+     */
+    public const ID = 'id';
+
+    /**
+     * 管理员ID
+     *
+     * @var string
+     */
+    public const ADMIN_ID = 'admin_id';
+
+    /**
+     * API名称
+     *
+     * @var string
+     */
+    public const API = 'api';
+
+    /**
+     * 请求IP
+     *
+     * @var string
+     */
+    public const IPADDRESS = 'ipaddress';
+
+    /**
+     * 请求荷载
+     *
+     * @var string
+     */
+    public const PAYLOAD = 'payload';
+
+    /**
+     * 请求头
+     *
+     * @var string
+     */
+    public const HEADERS = 'headers';
+
+    /**
+     * 响应参数
+     *
+     * @var string
+     */
+    public const RESPONSE = 'response';
+
+    /**
+     * 创建时间
+     *
+     * @var string
+     */
+    public const CREATED_AT = 'created_at';
+
+    /**
+     * 修改时间
+     *
+     * @var string
+     */
+    public const UPDATED_AT = 'updated_at';
 
     /**
      * 隐藏列
