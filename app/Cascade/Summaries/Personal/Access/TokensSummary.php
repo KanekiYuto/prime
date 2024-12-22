@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Cascade\Summaries\PersonalAccess;
+namespace App\Cascade\Summaries\Personal\Access;
 
 use Handyfit\Framework\Summary\Summary;
 

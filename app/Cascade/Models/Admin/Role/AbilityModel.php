@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Cascade\Models\AdminRole;
+namespace App\Cascade\Models\Admin\Role;
 
 use Illuminate\Database\Eloquent\Builder;
 use Handyfit\Framework\Summary\Summary;
 use Handyfit\Framework\Hook\Eloquent as Hook;
-use App\Cascade\Summaries\AdminRole\AbilitySummary as TheSummary;
+use App\Cascade\Summaries\Admin\Role\AbilitySummary as TheSummary;
 use Handyfit\Framework\Foundation\Hook\Eloquent as TheHook;
 use Illuminate\Database\Eloquent\Model as Model;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Cascade\Models\PersonalAccess;
+namespace App\Cascade\Models\Personal\Access;
 
 use Illuminate\Database\Eloquent\Builder;
 use Handyfit\Framework\Summary\Summary;
 use Handyfit\Framework\Hook\Eloquent as Hook;
-use App\Cascade\Summaries\PersonalAccess\TokensSummary as TheSummary;
+use App\Cascade\Summaries\Personal\Access\TokensSummary as TheSummary;
 use Handyfit\Framework\Foundation\Hook\Eloquent as TheHook;
 use Laravel\Sanctum\PersonalAccessToken as Model;
 

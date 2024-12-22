@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Cascade\Summaries\AbilityRelationApi;
+namespace App\Cascade\Summaries\Ability\Relation\Ability;
 
 use Handyfit\Framework\Summary\Summary;
 
@@ -9,7 +9,7 @@ use Handyfit\Framework\Summary\Summary;
  *
  * @author KanekiYuto
  */
-class QuerySummary extends Summary
+class ApiSummary extends Summary
 {
 
     /**
@@ -17,7 +17,7 @@ class QuerySummary extends Summary
      *
      * @var string
      */
-	public const TABLE = 'ability_relation_api_query';
+	public const TABLE = 'ability_relation_ability_api';
 
     /**
      * 主键
@@ -32,15 +32,15 @@ class QuerySummary extends Summary
 	 * @var string
 	 */public const ID = 'id';
 	/**
+	 * 能力信息 - ID
+	 *
+	 * @var string
+	 */public const ABILITY_ID = 'ability_id';
+	/**
 	 * 接口能力 - ID
 	 *
 	 * @var string
 	 */public const API_ID = 'api_id';
-	/**
-	 * 查询能力 - ID
-	 *
-	 * @var string
-	 */public const QUERY_ID = 'query_id';
 	/**
 	 * 创建时间
 	 *
@@ -64,6 +64,6 @@ class QuerySummary extends Summary
      *
      * @var array<int, string>
      */
-    public const FILLABLE = [self::ID, self::API_ID, self::QUERY_ID, self::CREATED_AT, self::UPDATED_AT];
+    public const FILLABLE = [self::ID, self::ABILITY_ID, self::API_ID, self::CREATED_AT, self::UPDATED_AT];
 
 }
