@@ -2,15 +2,15 @@
 
 namespace App\Http\Middleware;
 
-use App\Cascade\Models\Admin\InfoModel;
-use App\Cascade\Models\Admin\RoleModel;
-use App\Cascade\Summaries\Admin\AbilitySummary;
-use App\Cascade\Summaries\Admin\RoleSummary;
-use App\Constants\DevOpsConstant;
 use Closure;
-use Handyfit\Framework\Preacher\PreacherResponse;
-use Handyfit\Framework\Support\Facades\Preacher;
 use Illuminate\Http\Request;
+use App\Constants\DevOpsConstant;
+use App\Cascade\Models\AdminRoleModel;
+use App\Cascade\Models\AdminInfoModel;
+use App\Cascade\Summaries\AdminRoleSummary;
+use App\Cascade\Summaries\AdminAbilitySummary;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Handyfit\Framework\Preacher\PreacherResponse;
 
 /**
  * 后台能力验证中间件
@@ -23,8 +23,8 @@ class BackstageAbility
     /**
      * 处理传入的请求
      *
-     * @param Request $request
-     * @param Closure $next
+     * @param  Request  $request
+     * @param  Closure  $next
      *
      * @return mixed
      */
@@ -32,7 +32,7 @@ class BackstageAbility
     {
         $user = $request->user(DevOpsConstant::GUARD);
 
-        if (!($user instanceof InfoModel)) {
+        if (!($user instanceof AdminInfoModel)) {
             return Preacher::msgCode(
                 PreacherResponse::RESP_CODE_FAIL,
                 '系统异常'
@@ -40,8 +40,8 @@ class BackstageAbility
         }
 
         $roleInfo = $user->role();
-        $roleModel = RoleModel::query()->find($roleInfo->value(RoleSummary::ID));
-        $abilities = $roleModel->abilities()->pluck(AbilitySummary::SERVER_ROUTING);
+        $roleModel = AdminRoleModel::query()->find($roleInfo->value(AdminRoleSummary::ID));
+        $abilities = $roleModel->abilities()->pluck(AdminAbilitySummary::SERVER_ROUTING);
 
         $abilities = collect($abilities)->reject(function (array $item) {
             return empty($item);

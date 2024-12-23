@@ -2,8 +2,8 @@
 
 namespace App\Http\Service\DevOps\Admin;
 
-use App\Cascade\Models\Admin\InfoModel as AdminInfo;
-use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
+use App\Cascade\Models\AdminInfoModel as AdminInfo;
+use App\Cascade\Summaries\AdminInfoSummary as TheSummary;
 use Handyfit\Framework\Preacher\PreacherResponse;
 use Handyfit\Framework\Support\Facades\Preacher;
 use Illuminate\Support\Facades\Hash;

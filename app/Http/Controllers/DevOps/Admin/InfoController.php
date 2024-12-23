@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\DevOps\Admin;
 
-use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
+use App\Cascade\Summaries\AdminInfoSummary as TheSummary;
 use App\Http\Service\DevOps\Admin\InfoService;
 use Handyfit\Framework\Preacher\PreacherResponse;
 use Handyfit\Framework\Support\Facades\Preacher;

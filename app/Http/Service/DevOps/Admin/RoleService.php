@@ -2,9 +2,9 @@
 
 namespace App\Http\Service\DevOps\Admin;
 
-use App\Cascade\Models\Admin\RoleModel as AdminRole;
-use App\Cascade\Summaries\Admin\AbilitySummary;
-use App\Cascade\Summaries\Admin\RoleSummary as TheSummary;
+use App\Cascade\Models\AdminRoleModel;
+use App\Cascade\Summaries\AdminAbilitySummary;
+use App\Cascade\Summaries\AdminRoleSummary;
 use App\Experimental\Crush\Crush;
 use App\Experimental\Crush\Params\Paging as PagingParams;
 use Handyfit\Framework\Preacher\PreacherResponse;
@@ -28,7 +28,7 @@ class RoleService
      */
     public static function paging(PagingParams $pagingParams): PreacherResponse
     {
-        $model = AdminRole::query();
+        $model = AdminRoleModel::query();
 
         return Crush::response(
             builder: $model,
@@ -43,12 +43,12 @@ class RoleService
      */
     public static function select(): PreacherResponse
     {
-        $model = AdminRole::query();
+        $model = AdminRoleModel::query();
 
         $model = Equation::build(
             model: $model,
-            columns: [TheSummary::ID, TheSummary::NAME],
-            aliases: [TheSummary::ID => 'value', TheSummary::NAME => 'label']
+            columns: [AdminRoleSummary::ID, AdminRoleSummary::NAME],
+            aliases: [AdminRoleSummary::ID => 'value', AdminRoleSummary::NAME => 'label']
         );
 
         $model = $model->export()->get($model->getColumns());
@@ -68,11 +68,11 @@ class RoleService
      */
     public static function append(string $name, string $explain): PreacherResponse
     {
-        $model = AdminRole::query();
+        $model = AdminRoleModel::query();
 
         $model = $model->create([
-            TheSummary::NAME => $name,
-            TheSummary::EXPLAIN => $explain,
+            AdminRoleSummary::NAME => $name,
+            AdminRoleSummary::EXPLAIN => $explain,
         ]);
 
         return Preacher::allow(
@@ -99,11 +99,11 @@ class RoleService
         string $name,
         string $explain
     ): PreacherResponse {
-        $model = AdminRole::query()->find($id);
+        $model = AdminRoleModel::query()->find($id);
 
-        $column = TheSummary::NAME;
+        $column = AdminRoleSummary::NAME;
         $model->$column = $name;
-        $column = TheSummary::EXPLAIN;
+        $column = AdminRoleSummary::EXPLAIN;
         $model->$column = $explain;
 
         return Preacher::allow(
@@ -125,10 +125,10 @@ class RoleService
      */
     public static function ability(int $id): PreacherResponse
     {
-        $model = AdminRole::query()->find($id);
+        $model = AdminRoleModel::query()->find($id);
 
         $abilities = $model->abilities()->pluck(
-            AbilitySummary::TABLE . '.' . AbilitySummary::ID
+            AdminAbilitySummary::TABLE . '.' . AdminAbilitySummary::ID
         )->all();
 
         //        $abilities = $model->abilities()->get([

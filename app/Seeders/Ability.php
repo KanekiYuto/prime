@@ -2,10 +2,10 @@
 
 namespace App\Seeders;
 
-use App\Cascade\Summaries\Admin\AbilitySummary;
 use Closure;
-use Handyfit\Framework\Support\Timestamp;
 use Illuminate\Support\Collection;
+use Handyfit\Framework\Support\Timestamp;
+use App\Cascade\Summaries\AdminAbilitySummary;
 
 /**
  * 能力信息
@@ -74,10 +74,10 @@ class Ability
     /**
      * 构造一个能力实例
      *
-     * @param int    $id
-     * @param int    $parentId
-     * @param string $name
-     * @param string $type
+     * @param  int     $id
+     * @param  int     $parentId
+     * @param  string  $name
+     * @param  string  $type
      */
     private function __construct(int $id, int $parentId, string $name, string $type)
     {
@@ -94,8 +94,8 @@ class Ability
     /**
      * 创建 ability 类型能力
      *
-     * @param string $name
-     * @param int    $parentId
+     * @param  string  $name
+     * @param  int     $parentId
      *
      * @return static
      */
@@ -107,10 +107,10 @@ class Ability
     /**
      * 静态方法创建
      *
-     * @param int    $id
-     * @param int    $parentId
-     * @param string $name
-     * @param string $type
+     * @param  int     $id
+     * @param  int     $parentId
+     * @param  string  $name
+     * @param  string  $type
      *
      * @return static
      */
@@ -138,8 +138,8 @@ class Ability
     /**
      * 创建 group 类型能力
      *
-     * @param string $name
-     * @param int    $parentId
+     * @param  string  $name
+     * @param  int     $parentId
      *
      * @return static
      */
@@ -151,8 +151,8 @@ class Ability
     /**
      * 菜单类型能力
      *
-     * @param string $name
-     * @param int    $parentId
+     * @param  string  $name
+     * @param  int     $parentId
      *
      * @return static
      */
@@ -164,7 +164,7 @@ class Ability
     /**
      * 新增能力信息
      *
-     * @param Closure $callable
+     * @param  Closure  $callable
      *
      * @return static
      */
@@ -178,13 +178,13 @@ class Ability
     public function toArray(): array
     {
         $stack = collect()->push([
-            AbilitySummary::ID => $this->getId(),
-            AbilitySummary::NAME => $this->getName(),
-            AbilitySummary::PARENT_ID => $this->getParentId(),
-            AbilitySummary::CLIENT_ROUTING => $this->getClientRouting(),
-            AbilitySummary::SERVER_ROUTING => $this->getServerRouting(),
-            AbilitySummary::OPERATION => $this->getOperation(),
-            AbilitySummary::TYPE => $this->getType(),
+            AdminAbilitySummary::ID => $this->getId(),
+            AdminAbilitySummary::NAME => $this->getName(),
+            AdminAbilitySummary::PARENT_ID => $this->getParentId(),
+            AdminAbilitySummary::CLIENT_ROUTING => $this->getClientRouting(),
+            AdminAbilitySummary::SERVER_ROUTING => $this->getServerRouting(),
+            AdminAbilitySummary::OPERATION => $this->getOperation(),
+            AdminAbilitySummary::TYPE => $this->getType(),
         ]);
 
         return $this->recursion($stack, $this->children)->toArray();
@@ -213,7 +213,7 @@ class Ability
     /**
      * 设置客户端路由
      *
-     * @param string $value
+     * @param  string  $value
      *
      * @return static
      */
@@ -232,7 +232,7 @@ class Ability
     /**
      * 设置服务端路由
      *
-     * @param array $value
+     * @param  array  $value
      *
      * @return static
      */
@@ -251,7 +251,7 @@ class Ability
     /**
      * 设置操作
      *
-     * @param array $value
+     * @param  array  $value
      *
      * @return static
      */
@@ -273,20 +273,10 @@ class Ability
     }
 
     /**
-     * 获取与所有子项
-     *
-     * @return array
-     */
-    public function getChildren(): array
-    {
-        return $this->children;
-    }
-
-    /**
      * 递归
      *
-     * @param Collection $stack
-     * @param static[]   $children
+     * @param  Collection  $stack
+     * @param  static[]    $children
      *
      * @return Collection
      */
@@ -294,13 +284,13 @@ class Ability
     {
         foreach ($children as $child) {
             $stack->push([
-                AbilitySummary::ID => $child->getId(),
-                AbilitySummary::NAME => $child->getName(),
-                AbilitySummary::PARENT_ID => $child->getParentId(),
-                AbilitySummary::CLIENT_ROUTING => $child->getClientRouting(),
-                AbilitySummary::SERVER_ROUTING => $child->getServerRouting(),
-                AbilitySummary::OPERATION => $child->getOperation(),
-                AbilitySummary::TYPE => $child->getType(),
+                AdminAbilitySummary::ID => $child->getId(),
+                AdminAbilitySummary::NAME => $child->getName(),
+                AdminAbilitySummary::PARENT_ID => $child->getParentId(),
+                AdminAbilitySummary::CLIENT_ROUTING => $child->getClientRouting(),
+                AdminAbilitySummary::SERVER_ROUTING => $child->getServerRouting(),
+                AdminAbilitySummary::OPERATION => $child->getOperation(),
+                AdminAbilitySummary::TYPE => $child->getType(),
             ]);
 
             if (!empty($child->getChildren())) {
@@ -309,6 +299,16 @@ class Ability
         }
 
         return $stack;
+    }
+
+    /**
+     * 获取与所有子项
+     *
+     * @return array
+     */
+    public function getChildren(): array
+    {
+        return $this->children;
     }
 
 }

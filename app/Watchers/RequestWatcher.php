@@ -2,14 +2,14 @@
 
 namespace App\Watchers;
 
-use App\Cascade\Models\Admin\InfoModel;
-use App\Cascade\Models\Admin\LogModel as AdminLog;
-use App\Cascade\Summaries\Admin\InfoSummary;
-use App\Cascade\Summaries\Admin\LogSummary as TheSummary;
-use App\Constants\DevOpsConstant;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Routing\Route;
+use App\Constants\DevOpsConstant;
+use App\Cascade\Models\AdminInfoModel;
+use App\Cascade\Summaries\AdminInfoSummary;
+use Illuminate\Contracts\Foundation\Application;
+use App\Cascade\Models\AdminLogModel as AdminLog;
+use Illuminate\Foundation\Http\Events\RequestHandled;
+use App\Cascade\Summaries\AdminLogSummary as TheSummary;
 
 /**
  * 请求监视器
@@ -22,7 +22,7 @@ class RequestWatcher extends Watcher
     /**
      * Register the watcher.
      *
-     * @param Application $app
+     * @param  Application  $app
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class RequestWatcher extends Watcher
     /**
      * Record an incoming HTTP request.
      *
-     * @param RequestHandled $event
+     * @param  RequestHandled  $event
      *
      * @return void
      */
@@ -50,7 +50,7 @@ class RequestWatcher extends Watcher
         // 排除非 [Guard] 路由
         $user = $request->user(DevOpsConstant::GUARD);
 
-        if (!($user instanceof InfoModel)) {
+        if (!($user instanceof AdminInfoModel)) {
             return;
         }
 
@@ -68,7 +68,7 @@ class RequestWatcher extends Watcher
         }
 
         AdminLog::query()->create([
-            TheSummary::ADMIN_ID => $userArray[InfoSummary::ID],
+            TheSummary::ADMIN_ID => $userArray[AdminInfoSummary::ID],
             TheSummary::API => $routeName,
             TheSummary::IPADDRESS => $request->ip(),
             TheSummary::PAYLOAD => $request->input(),

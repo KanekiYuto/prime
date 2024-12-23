@@ -2,10 +2,10 @@
 
 namespace App\Models\Admin;
 
-use App\Cascade\Models\Admin\InfoModel;
-use App\Cascade\Summaries\Admin\InfoSummary;
-use App\Cascade\Summaries\Admin\LogSummary;
+use App\Cascade\Models\AdminInfoModel;
 use Illuminate\Database\Eloquent\Model;
+use App\Cascade\Summaries\AdminLogSummary;
+use App\Cascade\Summaries\AdminInfoSummary;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Log extends Model
@@ -19,9 +19,9 @@ class Log extends Model
     public function admin(): HasOne
     {
         return $this->hasOne(
-            InfoModel::class,
-            InfoSummary::ID,
-            LogSummary::ADMIN_ID
+            AdminInfoModel::class,
+            AdminInfoSummary::ID,
+            AdminLogSummary::ADMIN_ID
         );
     }
 

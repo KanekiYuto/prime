@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\DevOps\Admin;
 
-use App\Cascade\Summaries\Admin\RoleSummary as TheSummary;
+use App\Cascade\Summaries\AdminRoleSummary;
 use App\Experimental\Crush\Crush;
 use App\Http\Service\DevOps\Admin\RoleService;
 use Handyfit\Framework\Preacher\PreacherResponse;
@@ -29,9 +29,9 @@ class RoleController
             request: $request,
             class: RoleService::class,
             orderBy: [
-                TheSummary::ID,
-                TheSummary::UPDATED_AT,
-                TheSummary::CREATED_AT,
+                AdminRoleSummary::ID,
+                AdminRoleSummary::UPDATED_AT,
+                AdminRoleSummary::CREATED_AT,
             ],
             queryRule: [
                 'id' => ['nullable', 'string'],

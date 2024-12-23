@@ -2,14 +2,14 @@
 
 namespace App\Models\Admin;
 
-use App\Cascade\Models\Admin\RoleModel;
-use App\Cascade\Summaries\Admin\InfoSummary;
-use App\Cascade\Summaries\Admin\RoleSummary;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Foundation\Auth\User as Model;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Cascade\Models\AdminRoleModel;
+use Illuminate\Notifications\Notifiable;
+use App\Cascade\Summaries\AdminInfoSummary;
+use App\Cascade\Summaries\AdminRoleSummary;
+use Illuminate\Foundation\Auth\User as Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Info extends Model
 {
@@ -24,9 +24,9 @@ class Info extends Model
     public function role(): HasOne
     {
         return $this->hasOne(
-            RoleModel::class,
-            RoleSummary::ID,
-            InfoSummary::ADMIN_ROLE_ID
+            AdminRoleModel::class,
+            AdminRoleSummary::ID,
+            AdminInfoSummary::ADMIN_ROLE_ID
         );
     }
 

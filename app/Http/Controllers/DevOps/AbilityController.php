@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\DevOps;
 
-use App\Cascade\Models\Admin\AbilityModel;
-use App\Cascade\Summaries\Admin\AbilitySummary;
-use Handyfit\Framework\Preacher\PreacherResponse;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Request;
+use App\Cascade\Models\AdminAbilityModel;
+use App\Cascade\Summaries\AdminAbilitySummary;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Handyfit\Framework\Preacher\PreacherResponse;
 
 /**
  * 能力控制器
@@ -20,7 +20,7 @@ class AbilityController
     /**
      * 根据能力依赖关系获取
      *
-     * @param Request $request
+     * @param  Request  $request
      *
      * @return PreacherResponse
      */
@@ -31,13 +31,13 @@ class AbilityController
             'type' => ['required', Rule::in(['group', 'menu', 'ability'])],
         ]);
 
-        $stack = AbilityModel::query()
-            ->where(AbilitySummary::PARENT_ID, $requestParams[AbilitySummary::PARENT_ID])
-            ->where(AbilitySummary::TYPE, $requestParams[AbilitySummary::TYPE])
+        $stack = AdminAbilityModel::query()
+            ->where(AdminAbilitySummary::PARENT_ID, $requestParams[AdminAbilitySummary::PARENT_ID])
+            ->where(AdminAbilitySummary::TYPE, $requestParams[AdminAbilitySummary::TYPE])
             ->get([
-                AbilitySummary::ID,
-                AbilitySummary::NAME,
-                AbilitySummary::EXPLAIN,
+                AdminAbilitySummary::ID,
+                AdminAbilitySummary::NAME,
+                AdminAbilitySummary::EXPLAIN,
             ])->all();
 
         return Preacher::rows($stack);

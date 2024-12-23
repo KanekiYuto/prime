@@ -1,6 +1,6 @@
 <?php
 
-use App\Cascade\Models\Admin\InfoModel as AdminInfoModel;
+use App\Cascade\Models\AdminInfoModel;
 use App\Constants\DevOpsConstant;
 
 return [

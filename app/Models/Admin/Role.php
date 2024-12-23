@@ -2,10 +2,10 @@
 
 namespace App\Models\Admin;
 
-use App\Cascade\Models\Admin\AbilityModel;
-use App\Cascade\Summaries\Admin\Role\AbilitySummary as AdminRoleAbilityTrace;
 use Illuminate\Database\Eloquent\Model;
+use App\Cascade\Models\AdminAbilityModel;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Cascade\Summaries\Admin\RoleAbilitySummary as AdminRoleAbilityTrace;
 
 class Role extends Model
 {
@@ -18,7 +18,7 @@ class Role extends Model
     public function abilities(): BelongsToMany
     {
         return $this->belongsToMany(
-            AbilityModel::class,
+            AdminAbilityModel::class,
             AdminRoleAbilityTrace::TABLE,
             AdminRoleAbilityTrace::ROLE_ID,
             AdminRoleAbilityTrace::ABILITY_ID

@@ -2,7 +2,7 @@
 
 namespace App\Hook\Eloquent\Admin;
 
-use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
+use App\Cascade\Summaries\AdminInfoSummary as TheSummary;
 use Handyfit\Framework\Foundation\Hook\Eloquent as EloquentHook;
 use Handyfit\Framework\Summary\Summary;
 use Illuminate\Database\Eloquent\Builder;

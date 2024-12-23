@@ -2,7 +2,7 @@
 
 namespace App\Http\Service\DevOps\Admin;
 
-use App\Cascade\Models\Admin\LogModel as AdminLog;
+use App\Cascade\Models\AdminLogModel;
 use Handyfit\Framework\Preacher\PreacherResponse;
 use Kaneki\Diverse\Equation\Equation;
 use Kaneki\Diverse\Equation\Formulas;
@@ -34,7 +34,7 @@ class LogService
         string $order,
         array $query
     ): PreacherResponse {
-        $model = AdminLog::query();
+        $model = AdminLogModel::query();
 
         $like = function (mixed $value) {
             return "%$value%";

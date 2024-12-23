@@ -2,20 +2,20 @@
 
 namespace Database\Seeders;
 
-use App\Cascade\Models\Admin\AbilityModel;
-use App\Cascade\Models\Admin\InfoModel as AdminInfo;
-use App\Cascade\Models\Admin\Role\AbilityModel as AdminRoleAbilityModel;
-use App\Cascade\Models\Admin\RoleModel;
-use App\Cascade\Summaries\Admin\InfoSummary as TheSummary;
-use App\Cascade\Summaries\Admin\Role\AbilitySummary as AdminRoleAbilityTrace;
-use App\Cascade\Summaries\Admin\RoleSummary;
 use App\Seeders\Ability;
-use Handyfit\Framework\Preacher\PreacherResponse;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Handyfit\Framework\Support\Timestamp;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Cascade\Models\AdminRoleModel;
+use App\Cascade\Models\AdminAbilityModel;
+use Handyfit\Framework\Support\Timestamp;
+use App\Cascade\Summaries\AdminRoleSummary;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Handyfit\Framework\Preacher\PreacherResponse;
+use App\Cascade\Models\AdminInfoModel as AdminInfo;
+use App\Cascade\Summaries\AdminInfoSummary as TheSummary;
+use App\Cascade\Models\Admin\RoleAbilityModel as AdminRoleAbilityModel;
+use App\Cascade\Summaries\Admin\RoleAbilitySummary as AdminRoleAbilityTrace;
 
 /**
  * 管理员信息初始化
@@ -77,10 +77,10 @@ class AdminInitSeeder extends Seeder
     {
         $id = Timestamp::millisecond();
 
-        $result = RoleModel::query()->create([
-            RoleSummary::ID => $id,
-            RoleSummary::NAME => '超级管理员',
-            RoleSummary::EXPLAIN => '拥有平台所有权限',
+        $result = AdminRoleModel::query()->create([
+            AdminRoleSummary::ID => $id,
+            AdminRoleSummary::NAME => '超级管理员',
+            AdminRoleSummary::EXPLAIN => '拥有平台所有权限',
         ]);
 
         return Preacher::allow(
@@ -92,77 +92,6 @@ class AdminInitSeeder extends Seeder
                 'id' => $id,
             ]),
             Preacher::msgCode(PreacherResponse::RESP_CODE_FAIL, '角色创建失败')
-        );
-    }
-
-    /**
-     * 创建能力角色关联
-     *
-     * @param int   $roleId
-     * @param array $abilityStack
-     *
-     * @return PreacherResponse
-     */
-    public function runAbilityRole(int $roleId, array $abilityStack): PreacherResponse
-    {
-        foreach ($abilityStack as $stack) {
-            $id = Ability::createId();
-
-            $result = AdminRoleAbilityModel::query()->create([
-                AdminRoleAbilityTrace::ID => $id,
-                AdminRoleAbilityTrace::ROLE_ID => $roleId,
-                AdminRoleAbilityTrace::ABILITY_ID => $stack['id'],
-            ]);
-
-            if (!$result->save()) {
-                return Preacher::msgCode(
-                    PreacherResponse::RESP_CODE_FAIL,
-                    '能力角色关联创建失败'
-                );
-            }
-        }
-
-        return Preacher::msgCode(
-            PreacherResponse::RESP_CODE_SUCCEED,
-            '能力角色关联创建成功'
-        );
-    }
-
-    /**
-     * 创建管理员信息
-     *
-     * @param int $roleId
-     *
-     * @return PreacherResponse
-     */
-    public function runInfo(int $roleId): PreacherResponse
-    {
-        $stack = collect()->push([
-            TheSummary::ACCOUNT => 'phpunit@master',
-            TheSummary::PASS => Hash::make('phpunit@pass'),
-            TheSummary::EMAIL => 'phpunit-master@rubust.com',
-            TheSummary::ADMIN_ROLE_ID => $roleId,
-        ])->push([
-            TheSummary::ACCOUNT => 'KanekiYuto',
-            TheSummary::PASS => Hash::make('KanekiYuto@pass'),
-            TheSummary::EMAIL => 'kaneki.yuto.404@gmail.com',
-            TheSummary::ADMIN_ROLE_ID => $roleId,
-        ]);
-
-        foreach ($stack as $item) {
-            $result = AdminInfo::query()->create($item);
-
-            if (!$result->save()) {
-                return Preacher::msgCode(
-                    PreacherResponse::RESP_CODE_FAIL,
-                    '管理员信息创建失败'
-                );
-            }
-        }
-
-        return Preacher::msgCode(
-            PreacherResponse::RESP_CODE_SUCCEED,
-            '管理员信息创建成功'
         );
     }
 
@@ -243,7 +172,7 @@ class AdminInitSeeder extends Seeder
         })->toArray();
 
         foreach ($stack as $item) {
-            $result = AbilityModel::query()->create($item);
+            $result = AdminAbilityModel::query()->create($item);
 
             if (!$result) {
                 return Preacher::msgCode(
@@ -257,6 +186,77 @@ class AdminInitSeeder extends Seeder
             PreacherResponse::RESP_CODE_SUCCEED,
             '能力创建成功'
         )->setRows($stack);
+    }
+
+    /**
+     * 创建能力角色关联
+     *
+     * @param  int    $roleId
+     * @param  array  $abilityStack
+     *
+     * @return PreacherResponse
+     */
+    public function runAbilityRole(int $roleId, array $abilityStack): PreacherResponse
+    {
+        foreach ($abilityStack as $stack) {
+            $id = Ability::createId();
+
+            $result = AdminRoleAbilityModel::query()->create([
+                AdminRoleAbilityTrace::ID => $id,
+                AdminRoleAbilityTrace::ROLE_ID => $roleId,
+                AdminRoleAbilityTrace::ABILITY_ID => $stack['id'],
+            ]);
+
+            if (!$result->save()) {
+                return Preacher::msgCode(
+                    PreacherResponse::RESP_CODE_FAIL,
+                    '能力角色关联创建失败'
+                );
+            }
+        }
+
+        return Preacher::msgCode(
+            PreacherResponse::RESP_CODE_SUCCEED,
+            '能力角色关联创建成功'
+        );
+    }
+
+    /**
+     * 创建管理员信息
+     *
+     * @param  int  $roleId
+     *
+     * @return PreacherResponse
+     */
+    public function runInfo(int $roleId): PreacherResponse
+    {
+        $stack = collect()->push([
+            TheSummary::ACCOUNT => 'phpunit@master',
+            TheSummary::PASS => Hash::make('phpunit@pass'),
+            TheSummary::EMAIL => 'phpunit-master@rubust.com',
+            TheSummary::ADMIN_ROLE_ID => $roleId,
+        ])->push([
+            TheSummary::ACCOUNT => 'KanekiYuto',
+            TheSummary::PASS => Hash::make('KanekiYuto@pass'),
+            TheSummary::EMAIL => 'kaneki.yuto.404@gmail.com',
+            TheSummary::ADMIN_ROLE_ID => $roleId,
+        ]);
+
+        foreach ($stack as $item) {
+            $result = AdminInfo::query()->create($item);
+
+            if (!$result->save()) {
+                return Preacher::msgCode(
+                    PreacherResponse::RESP_CODE_FAIL,
+                    '管理员信息创建失败'
+                );
+            }
+        }
+
+        return Preacher::msgCode(
+            PreacherResponse::RESP_CODE_SUCCEED,
+            '管理员信息创建成功'
+        );
     }
 
 }

@@ -2,18 +2,17 @@
 
 namespace App\Http\Service\DevOps;
 
-use App\Cascade\Models\Admin\InfoModel as AdminInfoModel;
-use App\Cascade\Models\Admin\RoleModel;
-use App\Cascade\Summaries\Admin\AbilitySummary;
-use App\Cascade\Summaries\Admin\InfoSummary as AdminInfoTrace;
-use App\Cascade\Summaries\Admin\RoleSummary;
-use App\Cascade\Summaries\Admin\RoleSummary as AdminRoleSummary;
 use App\Constants\DevOpsConstant;
-use Handyfit\Framework\Preacher\PreacherResponse;
-use Handyfit\Framework\Support\Facades\Preacher;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
+use App\Cascade\Models\AdminInfoModel;
+use App\Cascade\Models\AdminRoleModel;
 use Illuminate\Support\Facades\Request;
+use App\Cascade\Summaries\AdminInfoSummary;
+use App\Cascade\Summaries\AdminRoleSummary;
+use App\Cascade\Summaries\AdminAbilitySummary;
+use Handyfit\Framework\Support\Facades\Preacher;
+use Handyfit\Framework\Preacher\PreacherResponse;
 
 /**
  * 管理员业务类
@@ -26,7 +25,7 @@ class AdminService
     /**
      * 获取用户信息
      *
-     * @param Request $request
+     * @param  Request  $request
      *
      * @return PreacherResponse
      */
@@ -47,7 +46,7 @@ class AdminService
     /**
      * 创建令牌凭证
      *
-     * @param AdminInfoModel $model
+     * @param  AdminInfoModel  $model
      *
      * @return PreacherResponse
      */
@@ -57,7 +56,7 @@ class AdminService
         $model->tokens()->delete();
 
         $createToken = $model->createToken(
-            $model->getAttributeValue(AdminInfoTrace::ID)
+            $model->getAttributeValue(AdminInfoSummary::ID)
         );
 
         $token = $createToken->token;
@@ -71,7 +70,7 @@ class AdminService
     /**
      * 获取用户信息
      *
-     * @param AdminInfoModel $model
+     * @param  AdminInfoModel  $model
      *
      * @return PreacherResponse
      */
@@ -79,32 +78,32 @@ class AdminService
     {
         $roleData = $model->role();
 
-        $roleModel = RoleModel::query()->find($roleData->value(RoleSummary::ID));
+        $roleModel = AdminRoleModel::query()->find($roleData->value(AdminRoleSummary::ID));
 
         $abilities = $roleModel->abilities()->get([
-            AbilitySummary::CLIENT_ROUTING,
-            AbilitySummary::OPERATION,
-            AbilitySummary::TYPE,
+            AdminAbilitySummary::CLIENT_ROUTING,
+            AdminAbilitySummary::OPERATION,
+            AdminAbilitySummary::TYPE,
         ]);
 
         $permissions = [];
 
         foreach ($abilities as $ability) {
-            if (!empty($ability[AbilitySummary::CLIENT_ROUTING])) {
-                $permissions[] = "@route:{$ability[AbilitySummary::CLIENT_ROUTING]}";
+            if (!empty($ability[AdminAbilitySummary::CLIENT_ROUTING])) {
+                $permissions[] = "@route:{$ability[AdminAbilitySummary::CLIENT_ROUTING]}";
             }
 
-            if (!empty($ability[AbilitySummary::OPERATION])) {
-                foreach ($ability[AbilitySummary::OPERATION] as $key => $val) {
+            if (!empty($ability[AdminAbilitySummary::OPERATION])) {
+                foreach ($ability[AdminAbilitySummary::OPERATION] as $key => $val) {
                     $permissions[] = "@$val:$key";
                 }
             }
         }
 
         return Preacher::receipt((object) [
-            'id' => $model[AdminInfoTrace::ID],
-            'account' => $model[AdminInfoTrace::ACCOUNT],
-            'email' => $model[AdminInfoTrace::EMAIL],
+            'id' => $model[AdminInfoSummary::ID],
+            'account' => $model[AdminInfoSummary::ACCOUNT],
+            'email' => $model[AdminInfoSummary::EMAIL],
             'role' => $roleData->value(AdminRoleSummary::NAME),
             'permissions' => $permissions,
         ]);
@@ -113,16 +112,16 @@ class AdminService
     /**
      * 修改管理员账号信息
      *
-     * @param int    $id
-     * @param string $account
+     * @param  int     $id
+     * @param  string  $account
      *
      * @return PreacherResponse
      */
     public static function account(int $id, string $account): PreacherResponse
     {
         $user = AdminInfoModel::query()
-            ->where(AdminInfoTrace::ACCOUNT, $account)
-            ->where(AdminInfoTrace::ID, '<>', $id);
+            ->where(AdminInfoSummary::ACCOUNT, $account)
+            ->where(AdminInfoSummary::ID, '<>', $id);
 
         if ($user->exists()) {
             return Preacher::code(
@@ -131,11 +130,11 @@ class AdminService
         }
 
         $user = AdminInfoModel::query()->find($id, [
-            AdminInfoTrace::ID,
-            AdminInfoTrace::ACCOUNT,
+            AdminInfoSummary::ID,
+            AdminInfoSummary::ACCOUNT,
         ]);
 
-        $column = AdminInfoTrace::ACCOUNT;
+        $column = AdminInfoSummary::ACCOUNT;
         $user->$column = $account;
 
         return Preacher::allow(
@@ -148,9 +147,9 @@ class AdminService
     /**
      * 修改管理员邮箱
      *
-     * @param int    $id
-     * @param int    $code
-     * @param string $email
+     * @param  int     $id
+     * @param  int     $code
+     * @param  string  $email
      *
      * @return PreacherResponse
      */
@@ -175,8 +174,8 @@ class AdminService
         }
 
         $model = AdminInfoModel::query();
-        $model = $model->where(AdminInfoTrace::EMAIL, $email);
-        $model = $model->where(AdminInfoTrace::ID, '<>', $id);
+        $model = $model->where(AdminInfoSummary::EMAIL, $email);
+        $model = $model->where(AdminInfoSummary::ID, '<>', $id);
         if ($model->exists()) {
             return Preacher::code(
                 PreacherResponse::RESP_CODE_WARN
@@ -185,7 +184,7 @@ class AdminService
 
         $model = AdminInfoModel::query()->find($id);
 
-        $column = AdminInfoTrace::EMAIL;
+        $column = AdminInfoSummary::EMAIL;
         $model->$column = $email;
 
         return Preacher::allow(
@@ -198,8 +197,8 @@ class AdminService
     /**
      * 更改管理员密码
      *
-     * @param int    $id
-     * @param string $pass
+     * @param  int     $id
+     * @param  string  $pass
      *
      * @return PreacherResponse
      */
@@ -207,7 +206,7 @@ class AdminService
     {
         $user = AdminInfoModel::query()->find($id);
 
-        $column = AdminInfoTrace::PASS;
+        $column = AdminInfoSummary::PASS;
         $user->$column = Hash::make($pass);
 
         return Preacher::allow(
@@ -220,15 +219,15 @@ class AdminService
     /**
      * 使用密码鉴权
      *
-     * @param string $account
-     * @param string $pass
+     * @param  string  $account
+     * @param  string  $pass
      *
      * @return PreacherResponse
      */
     public static function auth(string $account, string $pass): PreacherResponse
     {
         $user = AdminInfoModel::query()->where(
-            AdminInfoTrace::ACCOUNT,
+            AdminInfoSummary::ACCOUNT,
             $account,
         )->first();
 
