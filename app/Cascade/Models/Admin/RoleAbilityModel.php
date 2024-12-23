@@ -1,33 +1,23 @@
 <?php
 
-namespace App\Cascade\Models\Personal\Access;
+namespace App\Cascade\Models\Admin;
 
-use App\Cascade\Summaries\Personal\Access\TokensSummary as TheSummary;
-use Handyfit\Framework\Foundation\Hook\Eloquent as TheHook;
-use Handyfit\Framework\Hook\Eloquent as Hook;
-use Handyfit\Framework\Summary\Summary;
 use Illuminate\Database\Eloquent\Builder;
-use Laravel\Sanctum\PersonalAccessToken as Model;
+use Handyfit\Framework\Summary\Summary;
+use Handyfit\Framework\Hook\Eloquent as Hook;
+use App\Cascade\Summaries\Admin\RoleAbilitySummary as TheSummary;
+use Handyfit\Framework\Foundation\Hook\Eloquent as TheHook;
+use Illuminate\Database\Eloquent\Model as Model;
+
+use Handyfit\Framework\Foundation\Database\Eloquent\Casts\AutoTimezone as AutoTimezoneCastPackage;
 
 /**
+ * 
+ *
  * @author KanekiYuto
- */
-class TokensModel extends Model
+*/
+class RoleAbilityModel extends Model
 {
-
-    /**
-     * The primary key increases automatically
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * Indicates whether the model actively maintains a timestamp
-     *
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * Summary class
@@ -56,6 +46,20 @@ class TokensModel extends Model
      * @var string
      */
     protected $primaryKey = TheSummary::PRIMARY_KEY;
+
+    /**
+     * The primary key increases automatically
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * Indicates whether the model actively maintains a timestamp
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * Column properties that need to be hidden
@@ -91,13 +95,16 @@ class TokensModel extends Model
      */
     public function casts(): array
     {
-        return array_merge(parent::casts(), []);
+        return array_merge(parent::casts(), [
+			TheSummary::CREATED_AT => AutoTimezoneCastPackage::class,
+			TheSummary::UPDATED_AT => AutoTimezoneCastPackage::class,
+		]);
     }
 
     /**
      * Operations performed before creation
      *
-     * @param Builder $query
+     * @param  Builder  $query
      *
      * @return bool
      */
@@ -113,7 +120,7 @@ class TokensModel extends Model
     /**
      * The operation performed before the update
      *
-     * @param Builder $query
+     * @param  Builder  $query
      *
      * @return bool
      */

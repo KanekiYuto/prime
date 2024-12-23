@@ -1,35 +1,23 @@
 <?php
 
-namespace App\Cascade\Models\Admin;
+namespace App\Cascade\Models\Personal;
 
-use App\Cascade\Summaries\Admin\AbilitySummary as TheSummary;
-use Handyfit\Framework\Foundation\Database\Eloquent\Casts\AutoTimezone as AutoTimezoneCastPackage;
-use Handyfit\Framework\Foundation\Hook\Eloquent as TheHook;
-use Handyfit\Framework\Hook\Eloquent as Hook;
-use Handyfit\Framework\Summary\Summary;
 use Illuminate\Database\Eloquent\Builder;
+use Handyfit\Framework\Summary\Summary;
+use Handyfit\Framework\Hook\Eloquent as Hook;
+use App\Cascade\Summaries\Personal\AccessTokensSummary as TheSummary;
+use Handyfit\Framework\Foundation\Hook\Eloquent as TheHook;
+use Laravel\Sanctum\PersonalAccessToken as Model;
 
-use Illuminate\Database\Eloquent\Model as Model;
+
 
 /**
+ * 
+ *
  * @author KanekiYuto
- */
-class AbilityModel extends Model
+*/
+class AccessTokensModel extends Model
 {
-
-    /**
-     * The primary key increases automatically
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * Indicates whether the model actively maintains a timestamp
-     *
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * Summary class
@@ -58,6 +46,20 @@ class AbilityModel extends Model
      * @var string
      */
     protected $primaryKey = TheSummary::PRIMARY_KEY;
+
+    /**
+     * The primary key increases automatically
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * Indicates whether the model actively maintains a timestamp
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * Column properties that need to be hidden
@@ -93,19 +95,13 @@ class AbilityModel extends Model
      */
     public function casts(): array
     {
-        return array_merge(parent::casts(), [
-            TheSummary::ID => 'string',
-            TheSummary::SERVER_ROUTING => 'json',
-            TheSummary::OPERATION => 'json',
-            TheSummary::CREATED_AT => AutoTimezoneCastPackage::class,
-            TheSummary::UPDATED_AT => AutoTimezoneCastPackage::class,
-        ]);
+        return array_merge(parent::casts(), []);
     }
 
     /**
      * Operations performed before creation
      *
-     * @param Builder $query
+     * @param  Builder  $query
      *
      * @return bool
      */
@@ -121,7 +117,7 @@ class AbilityModel extends Model
     /**
      * The operation performed before the update
      *
-     * @param Builder $query
+     * @param  Builder  $query
      *
      * @return bool
      */
