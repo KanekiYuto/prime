@@ -1,0 +1,74 @@
+# For more information: https://laravel.com/docs/sail
+version: '3.2'
+services:
+
+    # [PHP] 服务 (CLI/SWOOLE)
+    php_service:
+        container_name: '${DOCKER_APP_ID}-php-service'
+        # 如有需要可以自行添加代码重新构建镜像
+        # build:
+        # context: ./docker/Dockerfile/php
+        # dockerfile: Dockerfile
+        image: 'southwan/phpswoole8.2:beta0.1'
+        ports:
+            - '${DOCKER_PHP_EXPOSE_PORT:-9000}:${DOCKER_PHP_CONTAINER_PORT:-9000}'
+        volumes:
+            - './:${DOCKER_RUN_DIRECTORY}'
+            - './docker/conf/php/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf'
+            - './docker/logs/supervisor:/var/log/supervisor'
+            - './docker/conf/php/php.production.ini:/usr/local/etc/php/php.ini'
+        networks:
+            - default
+
+    # [MySql] 数据库服务
+    mysql_service:
+        container_name: '${DOCKER_APP_ID}-mysql-service'
+        image: 'mysql:8.0'
+        ports:
+            - '${DOCKER_MYSQL_EXPOSE_PORT:-3306}:${DOCKER_MYSQL_CONTAINER_PORT:-3306}'
+        environment:
+            # MySQL 时区
+            TZ: 'Asia/Shanghai'
+            MYSQL_ROOT_PASSWORD: '${MASTER_DB_PASSWORD}'
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: '${MASTER_DB_DATABASE}'
+            MYSQL_USER: '${MASTER_DB_USERNAME}'
+            MYSQL_PASSWORD: '${MASTER_DB_PASSWORD}'
+            # 是否允许密码为空 （默认允许）
+            MYSQL_ALLOW_EMPTY_PASSWORD: 0
+        volumes:
+            - './docker/conf/mysql/my.cnf:/etc/my.cnf'
+            - './docker/backups/mysql:/backups'
+            - 'mysql-service:/var/lib/mysql'
+        networks:
+            - default
+        healthcheck:
+            test: [ "CMD", "mysqladmin", "ping", "-p${MASTER_DB_PASSWORD}" ]
+            retries: 3
+            timeout: 5s
+
+    # [Redis] 数据库服务 (NoSql)
+    redis_service:
+        container_name: '${DOCKER_APP_ID}-redis-service'
+        image: 'redis:7.0.8'
+        ports:
+            - '${DOCKER_REDIS_EXPOSE_PORT:-6379}:${DOCKER_REDIS_CONTAINER_PORT:-6379}'
+        volumes:
+            - 'redis-service:/data'
+        networks:
+            - default
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+            retries: 3
+            timeout: 5s
+
+networks:
+    default:
+        driver: bridge
+
+volumes:
+    # 修改配置后需要删除卷才会生效配置
+    mysql-service:
+        driver: local
+    redis-service:
+        driver: local
